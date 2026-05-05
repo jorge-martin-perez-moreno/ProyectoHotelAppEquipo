@@ -1,0 +1,1 @@
+<!-- poner la plantilla de una de las tiendas para probarlo -->
