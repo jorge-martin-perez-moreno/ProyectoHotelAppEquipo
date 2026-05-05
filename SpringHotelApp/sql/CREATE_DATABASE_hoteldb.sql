@@ -1,5 +1,0 @@
-DROP DATABASE IF EXISTS hoteldb;
-
-CREATE DATABASE hoteldb;
-
-USE hoteldb;
