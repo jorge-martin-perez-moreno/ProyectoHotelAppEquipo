@@ -7,11 +7,27 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-@Configuration //Anotación de configuración de Spring, la lee al arrancar y define los beans
-@EnableWebMvc //Anotación que activa los controladores
-@ComponentScan(basePackages = "es.accenture.controller") //Anotación que escanea el paquete y busca los beans
+/**
+ * Clase configuracion del contexto web.
+ * 
+ * @author jorge martin perez moreno
+ * @author javier roldan pomareta
+ * @version 1.0
+ */
+//Anotacion que dice a Spring que esta clase es de configuracion. Registra los @Bean.
+@Configuration
+//Activa el soporte completo de Spring. Es decir, procesa @Controller, @RequestMapping, @GetMapping, etc..
+@EnableWebMvc 
+//Anotacion que escanea los paquetes y subpaquetes y registra automaticamente los @Component.
+@ComponentScan(basePackages = "es.accenture.controller")
 public class WebConfig {
 
+	/**
+	 * Metodo traduce el nombre logico de las vistas que devuelve el @Controller en la ruta fisica del JSP
+	 * ViewResolver es una interfaz de SpringMVC.
+	 * 
+	 * @return devuelve el objeto 'vr' con la vista completa prefix + nombre que le pasa el controller + sufix
+	 */
     @Bean
     public ViewResolver viewResolver() { //Convierte lo que le devuelve el controller en una jsp
         InternalResourceViewResolver vr = new InternalResourceViewResolver();

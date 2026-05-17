@@ -1,4 +1,3 @@
-package es.accenture.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,30 +10,38 @@ import javax.persistence.Table;
 
 
 /**
- * Clase entidad 'Usuario'
- * Clase que nos permite crear objetos Usuarios
+ * Clase entidad que representa la tabla 'usuarios' de la bbdd.
+ * Permite crear y gestionar objetos Usuario.
  * 
  * @author jorge martin perez moreno
  * @version 1.0
  */
+//Anotacion que le dice a Hibernate que esta clase es una entidad y se corresponde con una tabla de la BBDD.
 @Entity
+//Anotacion que le dice a Hibernate con que tabla exacta de la BBDD se corresponde esta entidad.
 @Table(name="usuarios")
 public class Usuario {
+	
+//	Clase enum que define los roles del usuario en el sistema.
+	public enum UsuarioRol{
+		RECEPCIONISTA,
+		SUPERVISOR;
+	}
 	
 //	Declaracion de atributos
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_usuario")
+	@Column(name="id_usuario", nullable=false)
 	private int idUsuario;
-	@Column(name="username")
+	@Column(name="username", nullable=false)
 	private String username;
-	@Column(name="password")
+	@Column(name="password", nullable=false)
 	private String password;
 	@Enumerated(EnumType.STRING)
-	@Column(name="rol")
+	@Column(name="rol", nullable=false)
 	private UsuarioRol rol;
 	
-//	Constructor vacio
+//	Constructor vacio. Obligatorio para Hibernate.
 	public Usuario() {
 		
 	}
@@ -53,7 +60,7 @@ public class Usuario {
 	/**
 	 * Metodo que devuelve el idUsuario
 	 * 
-	 * @return idUsuario
+	 * @return idUsuario 
 	 */
 	public int getIdUsuario() {
 		return idUsuario;
@@ -63,7 +70,7 @@ public class Usuario {
 	/**
 	 * Metodo para dar un valor o modificar el idUsuario
 	 * 
-	 * @param idUsuario 
+	 * @param idUsuario, identificador unico del usuario
 	 */
 	public void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
@@ -126,8 +133,7 @@ public class Usuario {
 //	Metodo toString para mostrar informacion.
 	@Override
 	public String toString() {
-		return "Usuario id_usuario: " + idUsuario + ", username: " + username + ", password: " + password + ", rol: "
-				+ rol;
+		return "Usuario id_usuario: " + idUsuario + ", username: " + username + " rol: "+ rol;
 	}
 	
 }

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html lang="es">
 <head>
@@ -49,6 +49,12 @@
             </div>
 
         </form>
+		<%-- Mensaje de error — se muestra solo si el Controller lo añade al modelo --%>
+		<c:if test="${not empty error}">
+    		<div class="error-message">
+        		${error}
+    		</div>
+		</c:if>
 
     </div>
 

@@ -4,9 +4,19 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
-@Configuration // Anotación para la configuración de Spring
-@ComponentScan(basePackages = "es.accenture") // Escanea los paquetes y busca los beans
-@PropertySource("classpath:application.properties") // Carga el application.properties
+/**
+ * Clase de configuracion general del contenedor Spring.
+ * 
+ * @author jorge martin perez moreno
+ * @author javier roldan pomareta
+ * @version 1.0
+ */
+//Anotacion que dice a Spring que esta clase es de configuracion, define la configuración del contenedor Spring 
+@Configuration 
+//Anotacion que escanea los paquetes y subpaquetes y registra automaticamente los @Component.
+@ComponentScan(basePackages = "es.accenture") 
+//Anotacion que carga el application.properties
+@PropertySource("classpath:application.properties") 
 public class AppConfig {
 
 }
