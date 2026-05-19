@@ -1,5 +1,5 @@
 /* =============================================
-   Hotel FundAula - Login Page Styles
+   Hotel FundAula - Estilo Pagina Login
    ============================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400&display=swap');
@@ -152,4 +152,14 @@ body {
     color: white;
     transform: translateY(-1px);
     text-decoration: none;
+}
+.error-message {
+    color: #dc3545;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    padding: 10px;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
 }

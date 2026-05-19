@@ -2,7 +2,6 @@ package es.accenture.exceptions;
 
 /**
  * Clase de excepción personalizada. Esta clase extiende de RuntimeException.
- * Esta clase define mensajes de error como constantes.
  * Esta clase lanza excepciones cuando las credenciales son incorrectas.
  * 
  * @author jorge martin perez moreno

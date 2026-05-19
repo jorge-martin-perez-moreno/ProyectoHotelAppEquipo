@@ -1,3 +1,4 @@
+package es.accenture.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +23,11 @@ import javax.persistence.Table;
 @Table(name="usuarios")
 public class Usuario {
 	
-//	Clase enum que define los roles del usuario en el sistema.
+	/**
+	 * Clase enum que define los roles del usuario en el sistema.
+	 * @author jorge martin perez moreno
+	 * @version 1.0
+	 */
 	public enum UsuarioRol{
 		RECEPCIONISTA,
 		SUPERVISOR;
@@ -46,7 +51,7 @@ public class Usuario {
 		
 	}
 	
-//	Constructor con parametros
+//	Constructor con parametros.
 	public Usuario(String username, String password, UsuarioRol rol) {
 		this.username = username;
 		this.password = password;
