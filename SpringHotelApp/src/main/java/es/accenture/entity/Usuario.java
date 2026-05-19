@@ -38,7 +38,7 @@ public class Usuario {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_usuario", nullable=false)
 	private int idUsuario;
-	@Column(name="username", nullable=false)
+	@Column(name="username", nullable=false,  unique=true)
 	private String username;
 	@Column(name="password", nullable=false)
 	private String password;
