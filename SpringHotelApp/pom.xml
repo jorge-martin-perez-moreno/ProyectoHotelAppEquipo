@@ -10,7 +10,7 @@
 	<!-- Una aplicación web no genera un .jar sino un .war (Web Application Archive)-->
 	<packaging>war</packaging>
 
-	<!-- genera el archivo war y permite que el proyecto funcione sin web.xml-->
+	<!-- genera el archivo war y permite que el proyecto funcione sin web.xml - IA: se preguntó a chat gpt porque daba error en el IDE de mis compañeros y nos lo dió-->
 	<build>
 		<plugins>
 			<plugin>
@@ -32,7 +32,7 @@
 	</properties>
 
 	<dependencies>
-
+		<!--se consultó con chat gpt para que comprobara si faltaba alguna dependencia-->
 		<!-- contenedor de spring, crea y gestiona los objetos (beans) e inyección de dependencias -->
 		<dependency>
 			<groupId>org.springframework</groupId>

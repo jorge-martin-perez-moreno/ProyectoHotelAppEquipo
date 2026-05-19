@@ -109,7 +109,12 @@ B Jorge → (ej: Huéspedes + Login)
 
 Se resolvieron conflictos principalmente en:
 
-configuración de Spring ---------------> es un ejemplo, borrar luego
+Fase merge feature/setup->develop:
+- Se lanza el merge contra main por error al aparecer por defecto.</br>
+    Solución:   se revierte el merge y se continúa trabajando en develop.
+- Git no reconoce los paquetes vacíos al no tener una clase dentro.</br>
+    Solución:   Se crean a mano según la estructura acordada.
+
 controladores compartidos -------------> es un ejemplo, borrar luego
 ficheros JSP comunes ------------------> es un ejemplo, borrar luego
 
