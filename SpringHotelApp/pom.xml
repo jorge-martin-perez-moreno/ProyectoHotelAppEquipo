@@ -7,6 +7,7 @@
 	<groupId>es.accentureFundaula</groupId>
 	<artifactId>SpringHotelApp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<!-- Una aplicación web no genera un .jar sino un .war (Web Application Archive)-->
 	<packaging>war</packaging>
 
 	<!-- genera el archivo war y permite que el proyecto funcione sin web.xml - IA: se preguntó a chat gpt porque daba error en el IDE de mis compañeros y nos lo dió-->
