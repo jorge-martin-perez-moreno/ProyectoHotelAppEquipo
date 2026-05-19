@@ -36,10 +36,13 @@ public class Huesped {
 	private String apellidos;
 	@Column(name="direccion", nullable=false)
 	private String direccion;
-	@Column(name="telefono", nullable=false)
+	@Column(name="telefono", nullable=false, unique=true)
 	private String telefono;
 	@Column(name="email")
 	private String email;
+	@OneToMany(mappedBy="huesped", fetch=FetchType.LAZY)
+	private List<Reserva> reservas;
+	
 	
 //	Constructor vacio
 	public Huesped() {
