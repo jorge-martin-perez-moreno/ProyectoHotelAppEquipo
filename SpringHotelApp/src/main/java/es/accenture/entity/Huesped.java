@@ -1,36 +1,42 @@
 package es.accenture.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
 /**
- * Clase entidad 'Huesped'
- * Clase que nos permite crear objetos Huespedes
+ * Clase entidad que representa la tabla 'huespedes' de la bbdd.
+ * Permite crear y gestionar objetos Huesped.
  * 
  * @author jorge martin perez moreno
  * @version 1.0
  */
+//Anotacion que le dice a Hibernate que esta clase es una entidad y se corresponde con una tabla de la BBDD.
 @Entity
+//Anotacion que le dice a Hibernate con que tabla exacta de la BBDD se corresponde esta entidad.
 @Table(name="huespedes")
 public class Huesped {
 	
 //	Declaracion de atributos
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_huesped")
+	@Column(name="id_huesped", nullable=false)
 	private int idHuesped;
-	@Column(name="nombre")
+	@Column(name="nombre", nullable=false)
 	private String nombre;
-	@Column(name="apellidos")
+	@Column(name="apellidos", nullable=false)
 	private String apellidos;
-	@Column(name="direccion")
+	@Column(name="direccion", nullable=false)
 	private String direccion;
-	@Column(name="telefono")
+	@Column(name="telefono", nullable=false)
 	private String telefono;
 	@Column(name="email")
 	private String email;
@@ -41,9 +47,9 @@ public class Huesped {
 	}
 	
 //	Constructor con parametros
-	public Huesped(String nombre, String apellido, String direccion, String telefono, String email) {
+	public Huesped(String nombre, String apellidos, String direccion, String telefono, String email) {
 		this.nombre = nombre;
-		this.apellidos = apellido;
+		this.apellidos = apellidos;
 		this.direccion = direccion;
 		this.telefono = telefono;
 		this.email = email;
@@ -89,20 +95,20 @@ public class Huesped {
 	}
 
 	/**
-	 * Metodo que devuelve el apellido
+	 * Metodo que devuelve los apellidos
 	 * 
-	 * @return apellido
+	 * @return apellidos
 	 */
 	public String getApellidos() {
 		return apellidos;
 	}
 
 	/**
-	 * Metodo para dar un valor o modificar el apellido
+	 * Metodo para dar un valor o modificar los apellidos
 	 * 
-	 * @param apellido
+	 * @param apellidos
 	 */
-	public void setApellido(String apellidos) {
+	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
 
@@ -160,10 +166,10 @@ public class Huesped {
 		this.email = email;
 	}
 
-//	Metodo toString para mostrar informacion.
+	//	Metodo toString para mostrar informacion.
 	@Override
 	public String toString() {
-		return "Huesped id_huesped: " + idHuesped + ", nombre: " + nombre + ", apellido: " + apellidos + ", direccion: "
+		return "Huesped id_huesped: " + idHuesped + ", nombre: " + nombre + ", apellidos: " + apellidos + ", direccion: "
 				+ direccion + ", telefono: " + telefono + ", email: " + email;
 	}
 
