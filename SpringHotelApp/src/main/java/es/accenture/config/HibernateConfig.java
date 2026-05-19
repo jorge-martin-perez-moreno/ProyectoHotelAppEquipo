@@ -30,9 +30,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @PropertySource("classpath:application.properties")
 public class HibernateConfig {
 
+<<<<<<< HEAD
+	@Autowired //Anotación para la injection de dependencias para leer el application properties
+    private Environment env;
+=======
 //	Anotacion para inyectar el objeto Enviroment
 	@Autowired
 	private Environment env;
+>>>>>>> 7c695dd8556d114af01ffa98e5cadfadae4e3b28
 
 	/**
 	 * Metodo que crea la conexion fisica con BBDD.
@@ -49,6 +54,13 @@ public class HibernateConfig {
 		return ds;
 	}
 
+<<<<<<< HEAD
+    @Bean // Conecta con BBDD
+    public LocalSessionFactoryBean sessionFactory() {
+        LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
+        factory.setDataSource(dataSource());
+        factory.setPackagesToScan("es.accenture.entity");
+=======
 	/**
 	 * Metodo que configura el SessionFactory para gestionar operaciones CRUD.
 	 * 
@@ -60,6 +72,7 @@ public class HibernateConfig {
 		LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
 		factory.setDataSource(dataSource());
 		factory.setPackagesToScan("es.accenture.entity");
+>>>>>>> 7c695dd8556d114af01ffa98e5cadfadae4e3b28
 
 		Properties props = new Properties();
 		props.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
