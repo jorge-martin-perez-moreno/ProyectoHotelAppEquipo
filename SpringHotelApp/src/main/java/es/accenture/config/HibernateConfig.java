@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @PropertySource("classpath:application.properties") // Anotación para cargar el properties
 public class HibernateConfig {
 
-    @Autowired //Anotación para la injection de dependencias para leer el application properties
+	@Autowired //Anotación para la injection de dependencias para leer el application properties
     private Environment env;
 
     @Bean // Bean para crear la conexión con BBDD y mapea las entidades
@@ -37,7 +37,7 @@ public class HibernateConfig {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
         factory.setDataSource(dataSource());
-        factory.setPackagesToScan("es.accenture.model");
+        factory.setPackagesToScan("es.accenture.entity");
 
         Properties props = new Properties();
         props.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
