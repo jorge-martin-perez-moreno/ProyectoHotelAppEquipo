@@ -67,7 +67,7 @@
 </form:form>
 <br>
 
-<a href="${pageContext.request.contextPath}/incidencias">Volver</a><!-- botón volver para cambiar de vista al listado-->
+<a href="${pageContext.request.contextPath}/usuarios/principal">Volver</a><!-- botón volver para cambiar de vista al listado-->
 
 </body>
 </html>

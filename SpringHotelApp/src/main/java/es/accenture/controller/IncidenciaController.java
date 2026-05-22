@@ -51,7 +51,7 @@ public class IncidenciaController {
 
 		model.addAttribute("incidencia",incidencia); //model es la caja que guarda el objeto incidencia en model con el nombre incidencia, luego se recupera desde la jsp con ${expresion language}
 
-		return "DetalleIncidencia"; //devuelve la jsp de detalleIncidencia
+		return "WEB-INF/vistas/DetalleIncidencia"; //devuelve la jsp de detalleIncidencia
 		
 		}catch(BuscarException e) {
 			
@@ -75,7 +75,7 @@ public class IncidenciaController {
 
 		model.addAttribute("habitaciones",habitaciones); //guarda la lista habitaciones en model para usarla en el formulario
 
-		return "FormularioIncidencia"; //devuelve el jsp del formularioAltaIncidencia
+		return "WEB-INF/vistas/FormularioIncidencia"; //devuelve el jsp del formularioAltaIncidencia
 	}
 
 	// método para guardar incidencia nueva //este se cambia y se mete para que compruebe si tiene incidencias la incidencia y sino (si sí tiene) un else para modificar
@@ -124,7 +124,7 @@ public class IncidenciaController {
 
 		model.addAttribute("habitaciones",habitaciones); //guarda la lista habitaciones en model para usarla en el formulario, luego desde jsp se cogen con ${expresion languanges}
 
-		return "FormularioIncidencia"; //devuelve la jsp formularioEditarIncidencia
+		return "WEB-INF/vistas/FormularioIncidencia"; //devuelve la jsp formularioEditarIncidencia
 		
 		}catch(BuscarException e) {
 			
@@ -181,7 +181,7 @@ public class IncidenciaController {
 
 		model.addAttribute("habitacion",habitacion); //guarda la habitación en model, luego se cogerán en jsp con ${expresion language}
 
-		return "Incidencias"; //devuelve la jsp incidencias y muestra las de esa habitación
+		return "WEB-INF/vistas/Incidencias"; //devuelve la jsp incidencias y muestra las de esa habitación
 		
 		}catch (BuscarException e) {
 			

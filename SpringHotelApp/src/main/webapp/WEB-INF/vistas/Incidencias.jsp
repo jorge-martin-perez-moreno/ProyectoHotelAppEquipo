@@ -8,54 +8,11 @@
 
 
     <title>Incidencias</title><!-- título de la pestaña del navegador -->
-    <style>
 
-.fondo {
-    background-color: #E8B0E8;
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.titulo-principal {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #333333;
-    margin: 40px 0;
-    text-align: center;
-}
-
-.error {
-    text-align: center;
-    color: #D93D2E;
-}
-
-.cabecera {	
-	background-color: #D18400;
-}
-
-
-.sub-cabecera {
-	
-	background-color: #CCFFFF;
-}
-
-table {
-    background-color: white;
-    border-collapse: collapse;
-}
-
-th, td {
-    padding: 10px;
-    border: 1px solid black;
-}
-
-</style>
 </head>
-<body class="fondo">
+<body>
 
-<h1 class="titulo-principal">Lista de Incidencias</h1><!-- título, se puede cambiar el tamaño poniendo h2 o h3 o lo que sea -->
+<h1>Lista de Incidencias</h1><!-- título, se puede cambiar el tamaño poniendo h2 o h3 o lo que sea -->
 
 <c:if test="${sessionScope.usuarioLogueado.rol=='RECEPCIONISTA'}"><!-- restricción por roles -->
     <a href="${pageContext.request.contextPath}/incidencias/nueva">Nueva incidencia</a>
@@ -63,7 +20,7 @@ th, td {
 <br><!-- espacio en blanco, deja una línea -->
 
 <table border="1">
-    <tr class="cabecera">
+    <tr>
         <th>ID de la incidencia</th>
         <th>Número de la Habitación</th>
         <th>Estado de la incidencia</th>
@@ -74,7 +31,7 @@ th, td {
         <th>Acciones</th>
     </tr>
     <c:forEach var="incidencia" items="${incidencias}"><!-- recorre la list y cada objeto de incidencia es una incidencia -->
-        <tr class="sub-cabecera">
+        <tr>
             <td>${incidencia.idIncidencia}</td><!-- $expresion languages para llamar y traerse algo como un get -->
             <td>${incidencia.habitacion.numeroHabitacion}</td>
             <td>${incidencia.estadoIncidencia}</td>
@@ -93,14 +50,11 @@ th, td {
     </c:forEach>
 </table>
 
-<p class="error">${error}</p><!-- error al borrar habitación, cambia solo el mensaje porque enlaza al error y muestra el texto que sea -->
+<p>${error}</p><!-- error al borrar habitación, cambia solo el mensaje porque enlaza al error y muestra el texto que sea -->
 
-<form:form action="${pageContext.request.contextPath}/vueltaPrincipal" method="get">
-
-<!-- Al pulsar sobre el boton se vuelve al controlador del menu principal que envia la vista jsp 'Principal' -->
-<button type="submit">Volver al menu principal</button>
-
-</form:form>
+<a href="${pageContext.request.contextPath}/usuarios/principal">
+    <button type="button">Volver al menu principal</button>
+</a>
 
 </body>
 </html>

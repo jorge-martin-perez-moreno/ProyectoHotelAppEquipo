@@ -55,7 +55,7 @@
 
 <p>${error}</p> <!-- error al borrar habitación, cambia solo el mensaje porque enlaza al error y muestra el texto que sea -->
 
-<form:form action="${pageContext.request.contextPath}/vueltaPrincipal" method="get">
+<form:form action="${pageContext.request.contextPath}//usuarios/principal" method="get">
 
 <!-- Al pulsar sobre el boton se vuelve al controlador del menu principal que envia la vista jsp 'Principal' -->
 <button type="submit">Volver al menu principal</button>
