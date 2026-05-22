@@ -67,7 +67,7 @@ public class LoginController {
 	 * @param modelo objeto para pasar mensajes de error a la vista
 	 * @return InicioSesion si hay error, redirige a /huespedes si las credenciales son correctas
 	 */
-	@PostMapping("/login")
+	@PostMapping("login")
 	public String procesarLogin(@RequestParam("usuario") String username,
             					@RequestParam("password") String password,
             					HttpSession session,
@@ -133,7 +133,7 @@ public class LoginController {
 		
 //		Si el usuario no es null, es que hay una sesion activa.
 //      Devuelve la vista 'Principal'
-	    return "Principal";
+	    return "WEB-INF/vistas/Principal";
 	}
 	
 }
