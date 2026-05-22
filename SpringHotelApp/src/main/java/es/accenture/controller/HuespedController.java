@@ -1,7 +1,9 @@
 package es.accenture.controller;
 
 import java.util.List;
+
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import es.accenture.entity.Huesped;
 import es.accenture.exceptions.HuespedCamposVaciosException;
 import es.accenture.exceptions.HuespedDatosNoValidosException;
@@ -59,7 +62,7 @@ public class HuespedController {
 		modelo.addAttribute("rol", session.getAttribute("rol"));
 		
 //		Devuelve el nombre de la vista
-		return "Huespedes";
+		return "WEB-INF/vistas/Huespedes";
 
 	}
 	
@@ -87,7 +90,7 @@ public class HuespedController {
 			modelo.addAttribute("huesped", huesped);
 			
 //			Devuelve el nombre de la vista
-			return "DetalleHuesped";
+			return "WEB-INF/vistas/DetalleHuesped";
 			
 //		Capturamos cualquiera de las excepciones que pueda lanzar el Service.	
 		}catch(HuespedNoEncontradoException e){
@@ -104,7 +107,7 @@ public class HuespedController {
 	        modelo.addAttribute("huespedes", huespedes);
 	        
 //	        Devolvemos la vista de la lista de los huespedes 
-	        return "Huespedes";
+	        return "WEB-INF/vistas/Huespedes";
 			
 		}
 		
@@ -138,7 +141,7 @@ public class HuespedController {
 		modelo.addAttribute("huesped", new Huesped());
 		
 //		Devuelve el nombre del formulario del huesped para crear un nuevo huesped.
-		return "FormularioHuesped";
+		return "WEB-INF/vistas/FormularioHuesped";
 
 	}
 	
@@ -178,7 +181,7 @@ public class HuespedController {
 	        modelo.addAttribute("huesped", huesped);
 	        
 //	        Devolvemos la vista del formulario del huesped.
-	        return "FormularioHuesped";
+	        return "WEB-INF/vistas/FormularioHuesped";
 		}
 
 	}
@@ -216,7 +219,7 @@ public class HuespedController {
 			modelo.addAttribute("huesped", huesped);
 			
 //			Devuelve el formulario de huesped
-			return "FormularioHuesped";
+			return "WEB-INF/vistas/FormularioHuesped";
 			
 //		Capturamos cualquiera de las excepciones que pueda lanzar el Service.
 		}catch(HuespedNoEncontradoException  e) {
@@ -233,7 +236,7 @@ public class HuespedController {
 	        modelo.addAttribute("huespedes", huespedes);
 	        
 //	        Devolvemos la vista de la lista de los huespedes 
-	        return "Huespedes";
+	        return "WEB-INF/vistas/Huespedes";
 			
 		}
 
@@ -276,7 +279,7 @@ public class HuespedController {
 	        modelo.addAttribute("huesped", huesped);
 	        
 //	        Devolvemos la vista del formulario del huesped.
-	        return "FormularioHuesped";
+	        return "WEB-INF/vistas/FormularioHuesped";
 		}
 
 	}
@@ -322,7 +325,7 @@ public class HuespedController {
 	        modelo.addAttribute("huespedes", huespedes);
 	        
 //	        Devolvemos la vista de la lista de los huespedes 
-	        return "Huespedes";
+	        return "WEB-INF/vistas/Huespedes";
 			
 		}
 

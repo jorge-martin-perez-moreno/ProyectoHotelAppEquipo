@@ -38,7 +38,7 @@ public class IncidenciaController {
 
 		model.addAttribute("incidencias",incidencias); //model es la caja que guarda la lista incidencias en model con el nombre incidencias y luego desde la jsp se recoge con ${expresion language}
 
-		return "Incidencias"; //devuelve la vista jsp incidencias y muestra el listado
+		return "WEB-INF/vistas/Incidencias"; //devuelve la vista jsp incidencias y muestra el listado
 	}
 
 	// método para ver el detalle de una incidencia
@@ -59,7 +59,7 @@ public class IncidenciaController {
 			
 			model.addAttribute("incidencias",incidenciaService.buscarTodasIncidencias());
 			
-			return "Incidencias";
+			return "WEB-INF/vistas/Incidencias";
 			
 		}
 
@@ -102,7 +102,7 @@ public class IncidenciaController {
 			
 			model.addAttribute("habitaciones",habitacionService.buscarHabitaciones());
 			
-			return "FormularioIncidencia";
+			return "WEB-INF/vistas/FormularioIncidencia";
 			
 		}
 		
@@ -132,7 +132,7 @@ public class IncidenciaController {
 
 			model.addAttribute("incidencias",incidenciaService.buscarTodasIncidencias());
 
-			return "Incidencias";
+			return "WEB-INF/vistas/Incidencias";
 			
 		}
 		
@@ -161,7 +161,7 @@ public class IncidenciaController {
 
 			model.addAttribute("incidencias",incidenciaService.buscarTodasIncidencias()); //se vuelve a cargar la lista de incidencias porque sino al salir el mensaje en rojo no aparece
 
-			return "Incidencias"; //vuelve a la jsp incidencias y la muestra
+			return "WEB-INF/vistas/Incidencias"; //vuelve a la jsp incidencias y la muestra
 		}
 
 		return "redirect:/incidencias"; // Redirige a la jsp incidencias y muestra el listado si todo sale bien
@@ -189,7 +189,7 @@ public class IncidenciaController {
 
 			model.addAttribute("habitaciones",habitacionService.buscarHabitaciones());
 		
-			return "Habitaciones";
+			return "WEB-INF/vistas/Habitaciones";
 			
 		}
 		

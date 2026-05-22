@@ -39,7 +39,7 @@ public class HabitacionController {
 
         model.addAttribute("habitaciones",habitaciones); //model es la caja que guarda la lista habitaciones en model con el nombre habitaciones, controller es repartidor, model mochila con datos, jsp pantalla que enseña datos, luego se recogen los datos con ${habitaciones} expression language desde la jsp
 
-        return "Habitaciones"; //devuelve la vista jsp de habitaciones y muestra el listado
+        return "WEB-INF/vistas/Habitaciones"; //devuelve la vista jsp de habitaciones y muestra el listado
     }
 
     // método para ver el detalle de una habitación
@@ -52,7 +52,7 @@ public class HabitacionController {
 
         model.addAttribute("habitacion",habitacion); //model es la caja que guarda el objeto habitacion en model con el nombre habitacion, controller es repartidor, model mochila con datos, jsp pantalla que enseña datos, luego se recogen los datos con ${habitacion} expression language desde la jsp
 
-        return "DetalleHabitacion"; //devuelve la jsp de detalle
+        return "WEB-INF/vistas/DetalleHabitacion"; //devuelve la jsp de detalle
         
     }catch(BuscarException e) {
     	
@@ -60,7 +60,7 @@ public class HabitacionController {
 
 		model.addAttribute("habitaciones",habitacionService.buscarHabitaciones());
 
-		return "Habitaciones";
+		return "WEB-INF/vistas/Habitaciones";
 		
     	}
     
@@ -72,7 +72,7 @@ public class HabitacionController {
 
         model.addAttribute("habitacion",new Habitacion()); //model es la caja que guarda un objeto creado nuevo de tipo habitacion en model con el nombre habitacion, controller es repartidor, model mochila con datos, jsp pantalla que enseña datos, luego se recogen los datos con ${habitacion} expression language desde la jsp
 
-        return "FormularioHabitacion"; //devuelve el jsp del formulario, se cambia porque da problemas con editar y se hace otra jsp solo para editar
+        return "WEB-INF/vistas/FormularioHabitacion"; //devuelve el jsp del formulario, se cambia porque da problemas con editar y se hace otra jsp solo para editar
     }
 
     // método para guardar habitación nueva
@@ -97,7 +97,7 @@ public class HabitacionController {
     	
     	model.addAttribute("habitacion",habitacion);
     	
-    	return "FormularioHabitacion";
+    	return "WEB-INF/vistas/FormularioHabitacion";
     	
     	}
     
@@ -115,13 +115,13 @@ public class HabitacionController {
         // La manda al formulario ya relleno
         model.addAttribute("habitacion",habitacion); //model es la caja que guarda el objeto habitacion en model con el nombre habitacion, controller es repartidor, model mochila con datos, jsp pantalla que enseña datos, luego se recogen los datos con ${habitacion} expression language desde la jsp
 
-        return "FormularioHabitacion"; //devuelve la jsp formulario, se cambia porque da problemas con guardar y se hace otra jsp solo para editar y así para separar los caminos de guardar y editar
+        return "WEB-INF/vistas/FormularioHabitacion"; //devuelve la jsp formulario, se cambia porque da problemas con guardar y se hace otra jsp solo para editar y así para separar los caminos de guardar y editar
    
     	} catch (BuscarException e) {
     	
     	model.addAttribute("error",e.getMessage());
     	
-    	return "Habitaciones";
+    	return "WEB-INF/vistas/Habitaciones";
     	
     	}
     }
@@ -150,7 +150,7 @@ public class HabitacionController {
     		
     		model.addAttribute("habitaciones",habitacionService.buscarHabitaciones()); //se vuelve a cargar la lista de habitaciones porque sino al salir el mensaje en rojo no aparece
 
-    		return "Habitaciones"; //vuelve a la jsp habitaciones
+    		return "WEB-INF/vistas/Habitaciones"; //vuelve a la jsp habitaciones
     		
     	}
     		

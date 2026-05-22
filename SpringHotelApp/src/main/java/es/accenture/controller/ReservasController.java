@@ -19,7 +19,6 @@ import es.accenture.entity.Reserva;
 import es.accenture.exceptions.ActualizarException;
 import es.accenture.exceptions.BuscarException;
 import es.accenture.exceptions.EliminarException;
-
 import es.accenture.interfaces.IHabitacionService;
 import es.accenture.interfaces.IHuespedService;
 import es.accenture.interfaces.IReservasService;
@@ -60,7 +59,7 @@ public class ReservasController {
         model.addAttribute("rol", sesion.getAttribute("rol") );
         
         
-        return "Reserva"; //devuelve la vista jsp de reservas y muestra el listado
+        return "WEB-INF/vistas/Reserva"; //devuelve la vista jsp de reservas y muestra el listado
         
     }
 	
@@ -74,7 +73,7 @@ public class ReservasController {
 
         model.addAttribute("reserva",reserva); //model es la caja que guarda el objeto reserva en model con el nombre reserva
 
-        return "DetalleReserva"; //devuelve la jsp de detalle
+        return "WEB-INF/vistas/DetalleReserva"; //devuelve la jsp de detalle
         
     }catch(BuscarException e) {
     	
@@ -82,7 +81,7 @@ public class ReservasController {
 
 		model.addAttribute("reservas",reservaService.buscarReservas());
 
-		return "Reserva";
+		return "WEB-INF/vistas/Reserva";
 		
     	}
     
@@ -138,7 +137,7 @@ public class ReservasController {
 		modelo.addAttribute("habitaciones", habitacionService.buscarHabitaciones());
 		
 //		Devolvemos el formulario.
-		return "FormularioReserva";
+		return "WEB-INF/vistas/FormularioReserva";
     	
     }
     
@@ -185,7 +184,7 @@ public class ReservasController {
 			modelo.addAttribute("habitaciones", habitacionService.buscarHabitaciones());
 			
 //			Devolvemos el Formulario
-			return "FormularioReserva";
+			return "WEB-INF/vistas/FormularioReserva";
 			
 		}
     
@@ -224,7 +223,7 @@ public class ReservasController {
 			modelo.addAttribute("habitaciones", habitacionService.buscarHabitaciones());
 			
 //			Devolvemos el Formulario
-			return "FormularioReserva";
+			return "WEB-INF/vistas/FormularioReserva";
 			
 		}catch(BuscarException e) {
 			
@@ -235,7 +234,7 @@ public class ReservasController {
 			modelo.addAttribute("reservas", reservaService.buscarReservas());
 			
 //			Devolvemos la vista de Reservas.
-			return "Reserva";
+			return "WEB-INF/vistas/Reserva";
 		
 		}
     }
@@ -276,7 +275,7 @@ public class ReservasController {
 		  modelo.addAttribute("habitaciones", habitacionService.buscarHabitaciones());
 			
 //		  Devolvemos el Formulario
-		  return "FormularioReserva";
+		  return "WEB-INF/vistas/FormularioReserva";
 		}
     }
 
