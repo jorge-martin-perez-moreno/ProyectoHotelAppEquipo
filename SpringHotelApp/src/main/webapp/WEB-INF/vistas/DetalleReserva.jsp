@@ -14,20 +14,20 @@
         <form:input path="idReserva" disabled="true"/>
     </p>
     <p>
-        <strong>Id de la habitación:</strong>
-        <form:input path="idHabitacion" disabled="true"/>
+        <strong>Habitación:</strong>
+        ${reserva.habitacion.numeroHabitacion}
     </p>
-        <p>
+    <p>
         <strong>Fecha de entrada:</strong>
         <form:input path="fechaEntrada" disabled="true"/>
     </p>
-        <p>
+    <p>
         <strong>Fecha de salida:</strong>
         <form:input path="fechaSalida" disabled="true"/>
     </p>
-        <p>
-        <strong>Id del huésped:</strong>
-        <form:input path="idHuesped" disabled="true"/>
+    <p>
+        <strong>Huésped:</strong>
+        ${reserva.huesped.nombre} ${reserva.huesped.apellidos}
     </p>
     <p>
         <strong>Tipo de pensión:</strong>
@@ -37,7 +37,7 @@
         <strong>Estado de la reserva:</strong>
         <form:input path="estadoReserva" disabled="true"/>
     </p>
-        <p>
+    <p>
         <strong>Número de huéspedes:</strong>
         <form:input path="numeroHuespedes" disabled="true"/>
     </p>

@@ -79,7 +79,7 @@
 
         <!-- Volver al menú -->
         <div class="footer-nav">
-            <a href="${pageContext.request.contextPath}/usuarios/bienvenida" class="btn-volver">← Volver al menú</a>
+            <a href="${pageContext.request.contextPath}/usuarios/principal" class="btn-volver">← Volver al menú</a>
         </div>
 
     </div>

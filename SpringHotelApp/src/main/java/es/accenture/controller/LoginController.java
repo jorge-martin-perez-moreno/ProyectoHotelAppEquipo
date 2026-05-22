@@ -46,12 +46,12 @@ public class LoginController {
 //		Comprobamos que hay un usuario logueado, "user" no sea null.
 		if(session.getAttribute("user")!= null) {
 //			Si el usuario no es null, esta logueado, le mostramos la pagina de Bienvenida.
-			return "redirect:/usuarios/bienvenida";
+			return "redirect:/usuarios/principal";
 			
 		}
 //		Si el usuario es null, es decir, no esta logueado, le mostramos la pagina de InicioSesion.
 //		Devuelve la vista 'InicioSesion'
-		return "InicioSesion";
+		return "Login";
 			
 	}
 	
@@ -84,8 +84,8 @@ public class LoginController {
 //			Guardamos el rol del objeto usuario autenticado en la sesion.
 			session.setAttribute("rol", usuario.getRol().toString());
 		
-//			Redirige a /huespedes
-			return "redirect:/huespedes";
+//			Redirige a /principal
+			return "redirect:/usuarios/principal";
 
 //		Capturamos cualquiera de las dos excepciones que pueda lanzar el Service.
 		}catch(CampoCredencialesVacioException | CampoCredencialesIncorrectasException e) {
@@ -94,7 +94,7 @@ public class LoginController {
 			modelo.addAttribute("error", e.getMessage());
 			
 //			Devolvemos la vista 'InicioSesion', que es el formulario de login.
-			return "InicioSesion";
+			return "Login";
 		}
 	}
 	
@@ -121,8 +121,8 @@ public class LoginController {
 	 * @param session sesion HTTP del usuario
 	 * @return vista Bienvenida
 	 */
-	@GetMapping("/bienvenida")
-	public String mostrarBienvenida(HttpSession session) {
+	@GetMapping("/principal")
+	public String mostrarPrincipal(HttpSession session) {
 //		Comprobamos que el usuario es null, y no hay sesion activa.
 		if(session.getAttribute("user") == null) {
 //			Redirige a la vista /usuarios/login para que el usuario vuelva a loguarse.
@@ -130,8 +130,8 @@ public class LoginController {
 		}
 		
 //		Si el usuario no es null, es que hay una sesion activa.
-//      Devuelve la vista 'Bienvenida'
-	    return "Bienvenida";
+//      Devuelve la vista 'Principal'
+	    return "Principal";
 	}
 	
 }

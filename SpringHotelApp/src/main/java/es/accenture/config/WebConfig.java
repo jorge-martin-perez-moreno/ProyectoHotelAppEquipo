@@ -5,6 +5,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 /**
@@ -20,7 +22,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc 
 //Anotacion que escanea los paquetes y subpaquetes y registra automaticamente los @Component.
 @ComponentScan(basePackages = "es.accenture.controller")
-public class WebConfig {
+public class WebConfig implements WebMvcConfigurer{
 
 	/**
 	 * Metodo traduce el nombre logico de las vistas que devuelve el @Controller en la ruta fisica del JSP
@@ -34,5 +36,15 @@ public class WebConfig {
         vr.setPrefix("/WEB-INF/vistas/");
         vr.setSuffix(".jsp");
         return vr;
+    }
+    
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        
+//    	Esto permite acceder a /resources/css/huespedes.css
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+        
+//      Esto permite acceder a /css/bootstrap.min.css
+        registry.addResourceHandler("/css/**").addResourceLocations("/css/");
     }
 }
