@@ -33,7 +33,7 @@ public class WebConfig implements WebMvcConfigurer{
     @Bean
     public ViewResolver viewResolver() { //Convierte lo que le devuelve el controller en una jsp
         InternalResourceViewResolver vr = new InternalResourceViewResolver();
-        vr.setPrefix("/WEB-INF/vistas/");
+        vr.setPrefix("/");
         vr.setSuffix(".jsp");
         return vr;
     }
