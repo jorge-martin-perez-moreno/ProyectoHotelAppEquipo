@@ -14,7 +14,7 @@
 
 <h1>Lista de Incidencias</h1><!-- título, se puede cambiar el tamaño poniendo h2 o h3 o lo que sea -->
 
-<c:if test="${sessionScope.usuarioLogueado.rol=='RECEPCIONISTA'}"><!-- restricción por roles -->
+<c:if test="${sessionScope.rol=='RECEPCIONISTA'}"><!-- restricción por roles -->
     <a href="${pageContext.request.contextPath}/incidencias/nueva">Nueva incidencia</a>
 </c:if>
 <br><!-- espacio en blanco, deja una línea -->
@@ -41,7 +41,7 @@
             <td>${incidencia.fechaCierre}</td>
             <td>
                 <a href="${pageContext.request.contextPath}/incidencias/detalle?id=${incidencia.idIncidencia}">Ver</a>
-                <c:if test="${sessionScope.usuarioLogueado.rol=='RECEPCIONISTA'}"><!-- restricción por roles -->
+                <c:if test="${sessionScope.rol=='RECEPCIONISTA'}"><!-- restricción por roles -->
                 <a href="${pageContext.request.contextPath}/incidencias/editar?id=${incidencia.idIncidencia}">Editar</a>
                 <a href="${pageContext.request.contextPath}/incidencias/eliminar?id=${incidencia.idIncidencia}">Eliminar</a>
                  </c:if>

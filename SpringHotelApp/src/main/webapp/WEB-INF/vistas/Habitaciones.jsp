@@ -19,7 +19,7 @@
 
 <h1>Lista de Habitaciones</h1><!-- título, se puede cambiar el tamaño poniendo h2 o h3 o lo que sea -->
 
-<c:if test="${sessionScope.usuarioLogueado.rol=='RECEPCIONISTA'}"><!-- restricción por roles -->
+<c:if test="${sessionScope.rol=='RECEPCIONISTA'}"><!-- restricción por roles -->
     <a href="${pageContext.request.contextPath}/habitaciones/nueva">Nueva habitación</a>
 </c:if>
 <br><!-- espacio en blanco, deja una línea -->
@@ -44,7 +44,7 @@
 			<td>${habitacion.orientacionHabitacion}</td>
             <td>
                 <a href="${pageContext.request.contextPath}/habitaciones/detalle?id=${habitacion.idHabitacion}">Ver</a>
-         		<c:if test="${sessionScope.usuarioLogueado.rol=='RECEPCIONISTA'}"><!-- restricción por roles -->
+         		<c:if test="${sessionScope.rol=='RECEPCIONISTA'}"><!-- restricción por roles -->
                 <a href="${pageContext.request.contextPath}/habitaciones/editar?id=${habitacion.idHabitacion}">Editar</a>
                 <a href="${pageContext.request.contextPath}/habitaciones/eliminar?id=${habitacion.idHabitacion}">Eliminar</a>
       			</c:if>
