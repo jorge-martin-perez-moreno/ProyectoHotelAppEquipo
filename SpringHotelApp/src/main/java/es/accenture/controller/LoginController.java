@@ -113,22 +113,22 @@ public class LoginController {
 	    session.invalidate();
 
 //	    Redirige al formulario de login.
-	    return "redirect:/login";
+	    return "redirect:/usuarios/login";
 	}
 	
 	/**
-	 * Metodo Get devuelve la vista de Bienvenida.
+	 * Metodo Get devuelve la vista de Principal.
 	 * Si no hay sesion activa redirige al login.
 	 *
 	 * @param session sesion HTTP del usuario
-	 * @return vista Bienvenida
+	 * @return vista Principal
 	 */
 	@GetMapping("/principal")
 	public String mostrarPrincipal(HttpSession session) {
 //		Comprobamos que el usuario es null, y no hay sesion activa.
 		if(session.getAttribute("user") == null) {
 //			Redirige a la vista /usuarios/login para que el usuario vuelva a loguarse.
-			return "redirect:/usuarios/login";
+			return "redirect:/login";
 		}
 		
 //		Si el usuario no es null, es que hay una sesion activa.
