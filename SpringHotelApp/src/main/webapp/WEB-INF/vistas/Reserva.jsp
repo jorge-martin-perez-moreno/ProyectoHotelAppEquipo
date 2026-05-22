@@ -61,7 +61,7 @@
                     <td>${reserva.fechaSalida}</td>
                     <td>${reserva.estadoReserva}</td>
                     <%-- Enlace Detalle --%>
-                    <td><a href="${pageContext.request.contextPath}/reservas/detalle?id=${reserva.idReserva}" class="btn-detalle">Detalle</a></td>
+                    <td><a href="${pageContext.request.contextPath}/reservas/detalle?id=${reserva.idReserva}" class="btn-detalle">Ver</a></td>
                     <c:if test="${rol == 'RECEPCIONISTA'}">
                         <%-- Enlace Editar --%>
                         <td><a href="${pageContext.request.contextPath}/reservas/editar?idReserva=${reserva.idReserva}" class="btn-editar">Editar</a></td>

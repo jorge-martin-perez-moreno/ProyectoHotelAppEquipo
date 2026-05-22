@@ -65,7 +65,7 @@
                     <td>${huesped.telefono}</td>
                     <td>${huesped.email}</td>
                     <%-- Enlace Detalle --%>
-                    <td><a href="${pageContext.request.contextPath}/huespedes/detalle?id=${huesped.idHuesped}" class="btn-detalle">Detalle</a></td>
+                    <td><a href="${pageContext.request.contextPath}/huespedes/detalle?id=${huesped.idHuesped}" class="btn-detalle">Ver</a></td>
                     <c:if test="${rol == 'RECEPCIONISTA'}">
                     	<%-- Enlace Editar --%>
     					<td><a href="${pageContext.request.contextPath}/huespedes/editar?id=${huesped.idHuesped}" class="btn-editar">Editar</a></td>
