@@ -8,12 +8,16 @@
 <head>
 
 <link rel="stylesheet"
-    href="${pageContext.request.contextPath}/css/huespedes.css">
+    href="${pageContext.request.contextPath}/resources/css/huespedes.css">
     
 </head>
 <body>
 <h2>Formulario Habitación</h2>
 
+<div class="page-header">
+
+    <h3>Hotel FundAula</h3>
+    
 <h1><!-- para cambiar entre guardar y editar -->
     <c:choose>
         <c:when test="${habitacion.idHabitacion != 0}">
@@ -24,6 +28,10 @@
         </c:otherwise>
     </c:choose>
 </h1>
+
+</div>
+
+<div class="divider"></div>
 
 <div class="main-card">
 <form action="${pageContext.request.contextPath}/habitaciones/guardar" method="post">

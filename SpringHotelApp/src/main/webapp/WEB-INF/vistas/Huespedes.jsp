@@ -49,9 +49,12 @@
                     <th scope="col">Dirección</th>
                     <th scope="col">Teléfono</th>
                     <th scope="col">Email</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
+                    
+                    <th scope="col">Detalle</th>
+                    <c:if test="${rol == 'RECEPCIONISTA'}">
+                        <th scope="col">Editar</th>
+                        <th scope="col">Eliminar</th>
+                    </c:if>
                 </tr>
             </thead>
             <tbody>

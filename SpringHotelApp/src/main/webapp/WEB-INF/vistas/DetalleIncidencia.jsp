@@ -5,47 +5,61 @@
 <html>
 <head>
     <title>Detalle Incidencia</title><!-- título de la pestaña del navegador -->
-    
+    <!-- CSS Incidencias -->
+    <link rel="stylesheet"
+    href="${pageContext.request.contextPath}/resources/css/huespedes.css">
 </head>
+
 <body>
 
-<h2>Detalle Incidencia</h2>
-
-<div>
-
-<form:form modelAttribute="incidencia">
-    <p>
-        <strong>ID de la incidencia:</strong>
-        <form:input path="idIncidencia" disabled="true"/>
-    </p>
-    <p>
-        <strong>Nº de la habitación:</strong>
-        <form:input path="habitacion.numeroHabitacion" disabled="true"/>
-    </p>
-    <p>
-        <strong>Estado de la incidencia:</strong>
-        <form:input path="estadoIncidencia" disabled="true"/>
-    </p>
-    <p>
-        <strong>Prioridad de la incidencia:</strong>
-        <form:input path="prioridadIncidencia" disabled="true"/>
-    </p>
-    <p>
-        <strong>Descripción de la incidencia:</strong>
-        <form:input path="descripcionIncidencia" disabled="true"/>
-    </p>
-    <p>
-        <strong>Fecha apertura:</strong>
-        <form:input path="fechaApertura" disabled="true"/>
-    </p>
-    <p>
-        <strong>Fecha cierre:</strong>
-        <form:input path="fechaCierre" disabled="true"/>
-    </p>
-</form:form>
+<!-- Cabecera -->
+<div class="page-header">
+    <h3>Sistema de gestión de incidencias</h3>
+    <h1>Hotel FundAula</h1>
 </div>
+<div class="divider"></div>
 
-<a href="${pageContext.request.contextPath}/incidencias">Volver</a>
+<!-- Contenedor principal -->
+<div class="main-card">
+    <div class="card-header-row">
+        <h2 class="card-title">Detalle Incidencia</h2>
+    </div>
+    <!-- Tabla detalle -->
+    <table class="tabla-detalle">
+        <tr>
+            <td class="detalle-label">ID de la incidencia</td>
+            <td class="detalle-valor">${incidencia.idIncidencia}</td>
+        </tr>
+        <tr>
+            <td class="detalle-label">Nº de la habitación</td>
+            <td class="detalle-valor">${incidencia.habitacion.numeroHabitacion}</td>
+        </tr>
+        <tr>
+            <td class="detalle-label">Estado de la incidencia</td>
+            <td class="detalle-valor">${incidencia.estadoIncidencia}</td>
+        </tr>
+        <tr>
+            <td class="detalle-label">Prioridad de la incidencia</td>
+            <td class="detalle-valor">${incidencia.prioridadIncidencia}</td>
+        </tr>
+        <tr>
+            <td class="detalle-label">Descripción de la incidencia</td>
+            <td class="detalle-valor">${incidencia.descripcionIncidencia}</td>
+        </tr>
+        <tr>
+            <td class="detalle-label">Fecha apertura</td>
+            <td class="detalle-valor">${incidencia.fechaApertura}</td>
+        </tr>
+        <tr>
+            <td class="detalle-label">Fecha cierre</td>
+            <td class="detalle-valor">${incidencia.fechaCierre}</td>
+        </tr>
+    </table>
+
+    <div class="footer-nav">
+        <a href="${pageContext.request.contextPath}/incidencias"class="btn-volver">← Volver</a>
+    </div>
+</div>
 
 </body>
 </html>
