@@ -743,6 +743,7 @@ Usos:
 - Preguntas sobre HTML básico que no me acordaba
 - Pedir explicación sobre errores de consola
 - Pedir explicación y consejo sobre resolución de conflictos merge repetidos
+- Implementar estilos en vistas y arreglos css varios
 
 ---
 
@@ -971,4 +972,87 @@ Puedo explicar qué hace cada fragmento marcado como IA, justificar por qué enc
 
 ## Capturas de pantalla:
 
-Acordarnos de poner aquí al final cuando acabemos todo unas capturas de pantalla de la app funcionando que no se tarda nada y queda muy bien.
+<p align="center">
+  <img src="docs/images/login.png" width="500" />
+  <br>
+  <em>Captura de pantalla de login</em>
+</p>
+<br>
+<p align="center">
+  <img src="docs/images/principal.png" width="500" />
+  <br>
+  <em>Captura de pantalla de principal</em>
+</p>
+<br>
+<p align="center">
+  <img src="docs/images/lista habitaciones.png" width="500" />
+  <br>
+  <em>Captura de pantalla de lista habitaciones</em>
+</p>
+<br>
+<p align="center">
+  <img src="docs/images/detalle habitación.png" width="500" />
+  <br>
+  <em>Captura de pantalla de detalle habitación</em>
+</p>
+<br>
+<p align="center">
+  <img src="docs/images/editar habitación.png" width="500" />
+  <br>
+  <em>Captura de pantalla de editar habitación</em>
+</p>
+<br>
+<p align="center">
+  <img src="docs/images/huespedes.png" width="500" />
+  <br>
+  <em>Captura de pantalla de huespedes</em>
+</p>
+<br>
+<p align="center">
+  <img src="docs/images/detalle huesped.png" width="500" />
+  <br>
+  <em>Captura de pantalla de detalle huesped</em>
+</p>
+<br>
+<p align="center">
+  <img src="docs/images/editar huesped.png" width="500" />
+  <br>
+  <em>Captura de pantalla de editar huesped</em>
+</p>
+<br>
+<p align="center">
+  <img src="docs/images/reservas.png" width="500" />
+  <br>
+  <em>Captura de pantalla de reservas</em>
+</p>
+<br>
+<p align="center">
+  <img src="docs/images/detalle reserva.png" width="500" />
+  <br>
+  <em>Captura de pantalla de detalle reserva</em>
+</p>
+<br>
+<p align="center">
+  <img src="docs/images/editar reserva.png" width="500" />
+  <br>
+  <em>Captura de pantalla de editar reserva</em>
+</p>
+<br>
+<p align="center">
+  <img src="docs/images/incidencias.png" width="500" />
+  <br>
+  <em>Captura de pantalla de incidencias</em>
+</p>
+<br>
+<p align="center">
+  <img src="docs/images/detalle incidencia.png" width="500" />
+  <br>
+  <em>Captura de pantalla de detalle incidencia</em>
+</p>
+<br>
+<p align="center">
+  <img src="docs/images/editar incidencia.png" width="500" />
+  <br>
+  <em>Captura de pantalla de editar incidencia</em>
+</p>
+<br>
