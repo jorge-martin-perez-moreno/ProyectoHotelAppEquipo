@@ -236,7 +236,11 @@ GuardarException → error al guardar
 EliminarException → error al eliminar
 ActualizarException → error al actualizar
 BuscarException → error al buscar
-PONER AQUÍ LAS QUE SE USEN EN LA PARTE DEL LOGIN
+CampoCredencialesIncorrectasException → error en credenciales
+CampoCredencialesVacioException → error por credenciales vacías
+HuespedCamposVaciosException → error por campos vacíos
+HuespedDatosNoValidosException → error en datos de huesped
+HuespedNoEncontradoException → error al buscar huesped
 ```
 
 ### PAQUETE INTERFACES: son las interfaces que definen los contratos de métodos que se deben cumplir
@@ -529,7 +533,7 @@ Habitaciones.jsp muestra listado
 **Incidencias**
 - abierta → ❌ No
 - en_curso → ❌ No
-- cerrada → ✔️ Sí
+- cerrada → ❌ No
 
 **Reservas**
 - pendiente → ❌ No
@@ -555,7 +559,13 @@ Habitaciones.jsp muestra listado
 
 - abierta → ❌ No
 - en_proceso → ❌ No
-- cerrada → ❌ No
+- cerrada → ✔️ Sí
+
+### 📅 Eliminación de reservas
+
+- pendiente → ❌ No
+- confirmada → ❌ No
+- cancelada → ❌ No
 
 ---
 
