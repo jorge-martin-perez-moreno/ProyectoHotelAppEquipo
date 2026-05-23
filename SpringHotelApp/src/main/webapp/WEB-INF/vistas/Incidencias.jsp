@@ -35,15 +35,9 @@
             <th>Nº Habitación</th>
             <th>Estado</th>
             <th>Prioridad</th>
-            <th>Descripción</th>
             <th>Fecha apertura</th>
             <th>Fecha cierre</th>
-            <th>Detalle</th>
-
-            <c:if test="${sessionScope.rol=='RECEPCIONISTA'}"><!-- restricción por roles -->
-                <th>Editar</th>
-                <th>Eliminar</th>
-            </c:if>
+            <th>Acciones</th>
         </tr>
 
         <c:forEach var="incidencia" items="${incidencias}"><!-- recorre la list y cada objeto de incidencia es una incidencia -->
@@ -52,21 +46,22 @@
                 <td>${incidencia.habitacion.numeroHabitacion}</td>
                 <td>${incidencia.estadoIncidencia}</td>
                 <td>${incidencia.prioridadIncidencia}</td>
-                <td>${incidencia.descripcionIncidencia}</td>
-                <td>${incidencia.fechaApertura}</td>
-                <td>${incidencia.fechaCierre}</td>
+                <td>${incidencia.fechaApertura.toString().substring(0,10)}</td>
+                <td>${incidencia.fechaCierre.toString().substring(0,10)}</td>
+
                 <td>
-                    <a href="${pageContext.request.contextPath}/incidencias/detalle?id=${incidencia.idIncidencia}"class="btn-detalle">Ver</a>
+    <a href="${pageContext.request.contextPath}/incidencias/detalle?id=${incidencia.idIncidencia}" class="btn-detalle">Ver</a>
+</td>
+<c:if test="${sessionScope.rol=='RECEPCIONISTA'}">
+    <td>
+        <a href="${pageContext.request.contextPath}/incidencias/editar?id=${incidencia.idIncidencia}" class="btn-editar">Editar</a>
+    </td>
+    <td>
+        <a href="${pageContext.request.contextPath}/incidencias/eliminar?id=${incidencia.idIncidencia}" class="btn-eliminar">Eliminar</a>
+    </td>
+</c:if>
                 </td>
 
-                <c:if test="${sessionScope.rol=='RECEPCIONISTA'}"><!-- restricción por roles -->
-                    <td>
-                        <a href="${pageContext.request.contextPath}/incidencias/editar?id=${incidencia.idIncidencia}"class="btn-editar">Editar</a>
-                    </td>
-                    <td>
-                        <a href="${pageContext.request.contextPath}/incidencias/eliminar?id=${incidencia.idIncidencia}"class="btn-eliminar">Eliminar</a>
-                    </td>
-                 </c:if>
             </tr>
         </c:forEach>
     </table>

@@ -372,3 +372,100 @@ caption {
 .tabla td:nth-child(7) {
     min-width: 120px;
 }
+
+table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+td, th {
+    padding: 10px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+th:nth-child(6),
+td:nth-child(6),
+th:nth-child(7),
+td:nth-child(7) {
+    width: 180px;
+}
+
+td {
+    max-width: 120px;
+    white-space: normal;
+    word-break: break-word;
+}
+
+th:nth-child(6),
+td:nth-child(6),
+th:nth-child(7),
+td:nth-child(7) {
+    width: 90px;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+td {
+    overflow-wrap: anywhere;
+}
+
+th:nth-child(6),
+td:nth-child(6),
+th:nth-child(7),
+td:nth-child(7) {
+    width: 70px;
+}
+
+td:last-child {
+    white-space: nowrap;
+}
+
+.acciones {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-detalle,
+.btn-editar,
+.btn-eliminar {
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.btn-detalle,
+.btn-editar,
+.btn-eliminar{
+    margin-right: 6px;
+}
+
+.btn-detalle,
+.btn-editar,
+.btn-eliminar {
+    display: inline-block;
+    min-width: 70px;
+    text-align: center;
+}
+
+.btn-detalle,
+.btn-editar,
+.btn-eliminar {
+
+    min-width: auto !important;
+    width: auto !important;
+
+    padding: 8px 12px !important;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 6px;
+}
+
+td {
+    white-space: nowrap;
+}
