@@ -48,8 +48,6 @@
                     <th scope="col">Apellidos</th>
                     <th scope="col">Dirección</th>
                     <th scope="col">Teléfono</th>
-                    <th scope="col">Email</th>
-                    
                     <th scope="col">Detalle</th>
                     <c:if test="${rol == 'RECEPCIONISTA'}">
                         <th scope="col">Editar</th>
@@ -66,7 +64,6 @@
                     <td>${huesped.apellidos}</td>
                     <td>${huesped.direccion}</td>
                     <td>${huesped.telefono}</td>
-                    <td>${huesped.email}</td>
                     <%-- Enlace Detalle --%>
                     <td><a href="${pageContext.request.contextPath}/huespedes/detalle?id=${huesped.idHuesped}" class="btn-detalle">Ver</a></td>
                     <c:if test="${rol == 'RECEPCIONISTA'}">
