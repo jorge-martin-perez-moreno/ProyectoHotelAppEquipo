@@ -1,4 +1,4 @@
-package es.accenture.controller;                        //esto entre los 2 A y B mucho cuidado
+package es.accenture.controller;
 
 import java.util.List;
 
@@ -22,15 +22,49 @@ import es.accenture.exceptions.EliminarException;
 import es.accenture.interfaces.IHabitacionService;
 import es.accenture.interfaces.IHuespedService;
 import es.accenture.interfaces.IReservasService;
-
+/**
+ * Controlador encargado de gestionar las peticiones relacionadas con las reservas.
+ * 
+ * Esta clase permite hacer el crud de reservas, asi como gestionar las relaciones
+ * entre huespedes y habitaciones.
+ * 
+ * @author jorge y javi
+ * @version 1.0
+ */
 @Controller //Anotación que le dice a Spring que esta clase es un controller
 @RequestMapping("/reservas") //Anotación que asigna una url al controller, es la ruta general y luego se especifica con getmapping para donde va
 public class ReservasController {
 	
+	/**
+	 * Controlador encargado de gestionar las peticiones relacionadas con las reservas.
+	 * 
+	 * Esta clase permite hacer el crud de reservas, asi como gestionar las relaciones
+	 * entre huespedes y habitaciones.
+	 * 
+	 * @author danih y javi
+	 * @version 1.0
+	 */
 	private IReservasService reservaService;
+	
+	/*
+	 * Atributo donde se almacena el servicio de habitaciones
+	 * para obtener informacion de las habitaciones.
+	 */
 	private IHuespedService huespedService;
+	
+	/*
+	 * Atributo donde se almacena el servicio de huespedes
+	 * para obtener informacion de los huespedes que hay.
+	 */
 	private IHabitacionService habitacionService;
 	
+	/**
+	 * Constructor por parametros en el que se realiza la inyeccion de dependencias.
+	 * 
+	 * @param reservaService     servicio encargado de la logica de reservas
+	 * @param habitacionService  servicio encargado de la logica de habitaciones
+	 * @param huespedService     servicio encargado de la logica de huespedes
+	 */
 	@Autowired // inyección en el constructor
 	public ReservasController(IReservasService reservaService, IHuespedService huespedService, IHabitacionService habitacionService) {
 	    this.reservaService = reservaService;
@@ -38,8 +72,14 @@ public class ReservasController {
 	    this.habitacionService = habitacionService;
 	}
 	
-	
-    @GetMapping //Anotación que dice cuál es la url de entrada que coge el método, cuando alguien entre en reservas, se ejecuta el método listarReservas, va al service, de ahí al dao, lo saca de bbdd, lo guarda en la lista y devuelve la vista reservas con el listado
+	/**
+	 * Metodo que recoge las peticiones de la vista principal de reservas
+	 * obteniene el listado de reservas que hay.
+	 * 
+	 * @param model objeto que permite almacenar atributos para enviarlos a la vista
+	 * @return String con la vista 'Reservas'
+	 */
+    @GetMapping //Anotación que dice cuál es la url de entrada
     public String obtenerReservas(Model model, HttpSession sesion) {
 
 //    	Comprobamos que hay sesion activa.
@@ -51,29 +91,36 @@ public class ReservasController {
         }
     	
     	
-        List<Reserva>reservas=reservaService.buscarReservas(); //llama al service de ahí al dao y a bbdd y lo guarda en la lista reservas
+        List<Reserva>reservas=reservaService.buscarReservas();
 
-        model.addAttribute("reservas",reservas); //model es la caja que guarda la lista reservas en model con el nombre reservas
+        model.addAttribute("reservas",reservas);
 
 //      Añadimos el rol a la sesion.
         model.addAttribute("rol", sesion.getAttribute("rol") );
         
         
-        return "WEB-INF/vistas/Reserva"; //devuelve la vista jsp de reservas y muestra el listado
+        return "WEB-INF/vistas/Reserva";
         
     }
 	
+    /**
+     * Metodo que recoge las peticiones de la vista de detalle de una reserva.
+     * 
+     * @param idReserva identificador de la reserva que se desea consultar
+     * @param model     objeto que permite almacenar atributos y los mensajes de error
+     * @return String con la vista DetalleReserva o return a la lista
+     */
     // método para ver el detalle de una reserva
-    @GetMapping("/detalle") //Anotación que dice cuál es la url de entrada que coge el método, cuándo alguien entre en id se ejecuta el método verDetalle, hace la caja en model con "reserva" y devuelve la vista detalleReserva
-    public String detalleReserva(@RequestParam int id,Model model) { //se pone RequestParam para ocultar la url por contraseñas, así no usamos REST con PathVariable
+    @GetMapping("/detalle") //Anotación que dice cuál es la url de entrada
+    public String detalleReserva(@RequestParam int id,Model model) {
     	
     	try {
     		
-        Reserva reserva=reservaService.buscarReservaPorId(id); //obtiene una reserva por su Id a través del service
+        Reserva reserva=reservaService.buscarReservaPorId(id);
 
-        model.addAttribute("reserva",reserva); //model es la caja que guarda el objeto reserva en model con el nombre reserva
+        model.addAttribute("reserva",reserva);
 
-        return "WEB-INF/vistas/DetalleReserva"; //devuelve la jsp de detalle
+        return "WEB-INF/vistas/DetalleReserva";
         
     }catch(BuscarException e) {
     	
@@ -87,28 +134,42 @@ public class ReservasController {
     
     }
 
+    /**
+     * Metodo que recoge las peticiones de eliminacion de una reserva.
+     * 
+     * @param idReserva identificador de la reserva que se quiere eliminar
+     * @param model     objeto que permite almacenar atributos y losmensajes de error
+     * @return redireccion a la vista principal de reservas
+     */
     // método para eliminar reserva de bbdd
-    @GetMapping("/eliminar") //Anotación que dice cuál es la url de entrada que coge el método, cuándo alguien pinche en eliminar se ejecuta el método eliminarReserva, ejecuta el método del service y lo borra de bbdd a través del dao, luego redirige a la jsp reservas y muestra el listado
+    @GetMapping("/eliminar") //Anotación que dice cuál es la url de entrada
     public String eliminarReserva(@RequestParam int idReserva,Model model) {
     	
     	try {
     		
-    		reservaService.eliminarReserva(idReserva); // borra de bbdd a través del service
+    		reservaService.eliminarReserva(idReserva);
     	
     	}catch(EliminarException | BuscarException e){
     		
-    		model.addAttribute("error",e.getMessage()); //crea la caja model donde se añade el error que recupera el mensaje de la excepción
+    		model.addAttribute("error",e.getMessage());
     		
-    		model.addAttribute("reservas",reservaService.buscarReservas()); //se vuelve a cargar la lista de reservas porque sino al salir el mensaje en rojo no aparece
+    		model.addAttribute("reservas",reservaService.buscarReservas());
 
     		return "Reserva"; //vuelve a la jsp reservas
     		
     	}
     		
-        return "redirect:/reserva"; // Redirige a la jsp reservas y muestra el listado si todo sale bien
+        return "redirect:/reserva";
         
     }
     
+    /**
+	 * Metodo que recoge las peticiones de creacion de una nueva reserva, prepara
+	 *  el formulario y carga habitaciones y huespedes.
+	 * 
+	 * @param model objeto que permite almacenar atributos para enviarlos a la vista
+	 * @return String con la vista FormularioReserva
+	 */
     @GetMapping("/nuevo")
     public String nuevoReserva(Model modelo, HttpSession sesion) {
     	
@@ -141,6 +202,14 @@ public class ReservasController {
     	
     }
     
+    /**
+	 * Metodo que recoge las peticiones de guardar reserva a partir de los datos
+	 * de el formulario.
+	 * 
+	 * @param reserva objeto reserva con la informacion introducida
+	 * @param model   objeto que permite almacenar atributos y los mensajes de error
+	 * @return redireccion a la vista principal o return al formulario
+	 */
     @PostMapping("/nuevo")
     public String guardarReserva(@ModelAttribute("reserva") Reserva reserva, 
     							 @RequestParam("idHuesped") int idHuesped,
@@ -190,7 +259,15 @@ public class ReservasController {
     
     }
     
-    @GetMapping("/editar")
+    /**
+	 * Metodo que recoge las peticiones de editar una reserva, carga previamente
+	 * los datos quehay junto con las habitaciones y huespedes.
+	 * 
+	 * @param idReserva identificador de la reserva que se desea editar
+	 * @param model     objeto que permite almacenar atributos y los mensajes de error
+	 * @return String con la vista FormularioReserva
+	 */
+    @GetMapping("/editar") // Etiqueta de Spring para mapear la request con el metodo del controlador correspondiente
     public String editarReserva(@RequestParam int idReserva, Model modelo, HttpSession sesion) {
     	
 //    	Comprobamos que hay una sesion activa.
@@ -239,6 +316,13 @@ public class ReservasController {
 		}
     }
     
+    /**
+	 * Metodo que recoge las peticiones de creacion de una nueva reserva, prepara
+	 *  el formulario y carga habitaciones y huespedes.
+	 * 
+	 * @param model objeto que permite almacenar atributos para enviarlos a la vista
+	 * @return String con la vista FormularioReserva
+	 */
     @PostMapping("/editar")
 	public String actualizarReserva(@ModelAttribute("reserva") Reserva reserva,@RequestParam("idReserva") int id, Model modelo, HttpSession sesion) {
 			
