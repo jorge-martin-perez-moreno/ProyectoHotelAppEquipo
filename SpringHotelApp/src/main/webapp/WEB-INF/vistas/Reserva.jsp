@@ -58,8 +58,8 @@
                     <td>${reserva.idReserva}</td>
                     <td>${reserva.huesped.idHuesped}</td>
                     <td>${reserva.habitacion.numeroHabitacion}</td>
-                    <td>${reserva.fechaEntrada}</td>
-                    <td>${reserva.fechaSalida}</td>
+                    <td>${reserva.fechaEntrada.toString().substring(0,10)}</td>
+					<td>${reserva.fechaSalida.toString().substring(0,10)}</td>
                     <td>${reserva.estadoReserva}</td>
                     <td>${reserva.tipoPension}</td>
                     <td>${reserva.numeroHuespedes}</td>
