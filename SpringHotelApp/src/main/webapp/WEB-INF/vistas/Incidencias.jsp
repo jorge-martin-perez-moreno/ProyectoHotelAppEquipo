@@ -31,8 +31,8 @@
     <!-- Tabla incidencias -->
     <table class="tabla">
         <tr>
-            <th>ID</th>
-            <th>Habitación</th>
+            <th>ID Incidencia</th>
+            <th>Nº Habitación</th>
             <th>Estado</th>
             <th>Prioridad</th>
             <th>Descripción</th>

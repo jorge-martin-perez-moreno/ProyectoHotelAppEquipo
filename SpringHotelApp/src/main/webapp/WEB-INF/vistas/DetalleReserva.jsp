@@ -42,10 +42,6 @@
             <td class="detalle-valor">${reserva.fechaSalida}</td>
         </tr>
         <tr>
-            <td class="detalle-label">Huésped</td>
-            <td class="detalle-valor">${reserva.huesped.nombre} ${reserva.huesped.apellidos}</td>
-        </tr>
-        <tr>
             <td class="detalle-label">Tipo de pensión</td>
             <td class="detalle-valor">${reserva.tipoPension}</td>
         </tr>

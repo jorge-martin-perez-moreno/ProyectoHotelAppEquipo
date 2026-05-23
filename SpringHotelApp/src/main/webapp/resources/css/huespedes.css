@@ -92,7 +92,7 @@ body {
 .tabla td,
 .tabla th {
     padding: 10px;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
 }
 .tabla thead tr {
     background: linear-gradient(135deg, #b48ecf, #8a5fad);
@@ -362,4 +362,13 @@ caption {
 
 .tabla td:nth-child(8) {
     min-width: 90px;
+}
+
+.tabla td {
+    white-space: nowrap;
+}
+
+.tabla td:nth-child(6),
+.tabla td:nth-child(7) {
+    min-width: 120px;
 }

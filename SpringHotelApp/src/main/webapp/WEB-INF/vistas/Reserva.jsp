@@ -40,13 +40,14 @@
             <caption>Listado de reservas</caption>
             <thead>
                 <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Huesped</th>
-                    <th scope="col">Habitacion</th>
+                    <th scope="col">Id Reserva</th>
+                    <th scope="col">Id Huesped</th>
+                    <th scope="col">Nº Habitacion</th>
                     <th scope="col">Fecha entrada</th>
                     <th scope="col">Fecha salida</th>
                     <th scope="col">Estado</th>
-                    <th scope="col"></th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Nº Huespedes</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
                 </tr>
@@ -55,11 +56,13 @@
                 <c:forEach var="reserva" items="${reservas}">
                 <tr>
                     <td>${reserva.idReserva}</td>
-                    <td>${reserva.huesped.nombre} ${reserva.huesped.apellidos}</td>
+                    <td>${reserva.huesped.idHuesped}</td>
                     <td>${reserva.habitacion.numeroHabitacion}</td>
                     <td>${reserva.fechaEntrada}</td>
                     <td>${reserva.fechaSalida}</td>
                     <td>${reserva.estadoReserva}</td>
+                    <td>${reserva.tipoPension}</td>
+                    <td>${reserva.numeroHuespedes}</td>
                     <%-- Enlace Detalle --%>
                     <td><a href="${pageContext.request.contextPath}/reservas/detalle?id=${reserva.idReserva}" class="btn-detalle">Ver</a></td>
                     <c:if test="${rol == 'RECEPCIONISTA'}">
