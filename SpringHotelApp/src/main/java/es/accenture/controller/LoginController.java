@@ -1,6 +1,7 @@
 package es.accenture.controller;
 
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import es.accenture.entity.Usuario;
 import es.accenture.exceptions.CampoCredencialesIncorrectasException;
 import es.accenture.exceptions.CampoCredencialesVacioException;
@@ -46,12 +48,12 @@ public class LoginController {
 //		Comprobamos que hay un usuario logueado, "user" no sea null.
 		if(session.getAttribute("user")!= null) {
 //			Si el usuario no es null, esta logueado, le mostramos la pagina de Bienvenida.
-			return "redirect:/usuarios/bienvenida";
+			return "redirect:/usuarios/principal";
 			
 		}
 //		Si el usuario es null, es decir, no esta logueado, le mostramos la pagina de InicioSesion.
 //		Devuelve la vista 'InicioSesion'
-		return "InicioSesion";
+		return "Login";
 			
 	}
 	
@@ -65,7 +67,7 @@ public class LoginController {
 	 * @param modelo objeto para pasar mensajes de error a la vista
 	 * @return InicioSesion si hay error, redirige a /huespedes si las credenciales son correctas
 	 */
-	@PostMapping("/login")
+	@PostMapping("login")
 	public String procesarLogin(@RequestParam("usuario") String username,
             					@RequestParam("password") String password,
             					HttpSession session,
@@ -84,8 +86,8 @@ public class LoginController {
 //			Guardamos el rol del objeto usuario autenticado en la sesion.
 			session.setAttribute("rol", usuario.getRol().toString());
 		
-//			Redirige a /huespedes
-			return "redirect:/huespedes";
+//			Redirige a /principal
+			return "redirect:/usuarios/principal";
 
 //		Capturamos cualquiera de las dos excepciones que pueda lanzar el Service.
 		}catch(CampoCredencialesVacioException | CampoCredencialesIncorrectasException e) {
@@ -94,7 +96,7 @@ public class LoginController {
 			modelo.addAttribute("error", e.getMessage());
 			
 //			Devolvemos la vista 'InicioSesion', que es el formulario de login.
-			return "InicioSesion";
+			return "Login";
 		}
 	}
 	
@@ -115,23 +117,23 @@ public class LoginController {
 	}
 	
 	/**
-	 * Metodo Get devuelve la vista de Bienvenida.
+	 * Metodo Get devuelve la vista de Principal.
 	 * Si no hay sesion activa redirige al login.
 	 *
 	 * @param session sesion HTTP del usuario
-	 * @return vista Bienvenida
+	 * @return vista Principal
 	 */
-	@GetMapping("/bienvenida")
-	public String mostrarBienvenida(HttpSession session) {
+	@GetMapping("/principal")
+	public String mostrarPrincipal(HttpSession session) {
 //		Comprobamos que el usuario es null, y no hay sesion activa.
 		if(session.getAttribute("user") == null) {
 //			Redirige a la vista /usuarios/login para que el usuario vuelva a loguarse.
-			return "redirect:/usuarios/login";
+			return "redirect:/login";
 		}
 		
 //		Si el usuario no es null, es que hay una sesion activa.
-//      Devuelve la vista 'Bienvenida'
-	    return "Bienvenida";
+//      Devuelve la vista 'Principal'
+	    return "WEB-INF/vistas/Principal";
 	}
 	
 }

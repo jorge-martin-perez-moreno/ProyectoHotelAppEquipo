@@ -2,7 +2,6 @@
    Hotel FundAula - Estilo Huespedes
    ============================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400&display=swap');
 
 /* --- General --- */
 body {
@@ -53,7 +52,7 @@ body {
     backdrop-filter: blur(10px);
     border-radius: 16px;
     padding: 40px 48px;
-    max-width: 1000px;
+    max-width: 1400px;
     margin: 0 auto;
     box-shadow: 0 8px 32px rgba(100, 60, 140, 0.10);
     border: 1px solid rgba(180, 142, 207, 0.18);
@@ -83,6 +82,18 @@ body {
     margin-bottom: 24px;
 }
 
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+    table-layout: auto;
+}
+
+.tabla td,
+.tabla th {
+    padding: 10px;
+    font-size: 0.75rem;
+}
 .tabla thead tr {
     background: linear-gradient(135deg, #b48ecf, #8a5fad);
     color: white;
@@ -92,7 +103,7 @@ body {
     padding: 12px 16px;
     font-family: 'Lato', sans-serif;
     font-weight: 400;
-    font-size: 0.85rem;
+    font-size: 0.65rem;
     letter-spacing: 1px;
     text-transform: uppercase;
     text-align: left;
@@ -124,7 +135,7 @@ body {
 .detalle-label {
     font-family: 'Lato', sans-serif;
     font-weight: 400;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     color: white;
     background: linear-gradient(135deg, #b48ecf, #8a5fad);
     padding: 12px 16px;
@@ -217,14 +228,15 @@ body {
     border-radius: 8px;
     color: white;
     font-family: 'Lato', sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     letter-spacing: 1px;
     text-transform: uppercase;
-    padding: 10px 20px;
+    padding: 8px 12px;
     cursor: pointer;
     text-decoration: none;
     transition: opacity 0.2s;
-    margin-right: 12px;
+    display: inline-block;
+    white-space: nowrap;
 }
 
 .btn-editar:hover {
@@ -298,4 +310,162 @@ caption {
     margin-top: 10px;
     text-align: center;
     font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.main-card {
+    overflow-x: auto;
+}
+
+.tabla {
+    table-layout: fixed;
+}
+
+.tabla td,
+.tabla th {
+    word-wrap: break-word;
+}
+
+.tabla th {
+    white-space: nowrap;
+}
+
+.tabla th,
+.tabla td {
+    white-space: nowrap;
+}
+
+.tabla td {
+    white-space: normal;
+    word-break: break-word;
+}
+.tabla td:nth-child(5) {
+    max-width: 180px;
+}
+
+.btn-eliminar {
+    white-space: nowrap;
+}
+
+.btn-detalle {
+    white-space: nowrap;
+    min-width: 70px;
+}
+
+.tabla td:nth-child(8) {
+    min-width: 90px;
+}
+
+.tabla td {
+    white-space: nowrap;
+}
+
+.tabla td:nth-child(6),
+.tabla td:nth-child(7) {
+    min-width: 120px;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+td, th {
+    padding: 10px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+th:nth-child(6),
+td:nth-child(6),
+th:nth-child(7),
+td:nth-child(7) {
+    width: 180px;
+}
+
+td {
+    max-width: 120px;
+    white-space: normal;
+    word-break: break-word;
+}
+
+th:nth-child(6),
+td:nth-child(6),
+th:nth-child(7),
+td:nth-child(7) {
+    width: 90px;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+td {
+    overflow-wrap: anywhere;
+}
+
+th:nth-child(6),
+td:nth-child(6),
+th:nth-child(7),
+td:nth-child(7) {
+    width: 70px;
+}
+
+td:last-child {
+    white-space: nowrap;
+}
+
+.acciones {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-detalle,
+.btn-editar,
+.btn-eliminar {
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.btn-detalle,
+.btn-editar,
+.btn-eliminar{
+    margin-right: 6px;
+}
+
+.btn-detalle,
+.btn-editar,
+.btn-eliminar {
+    display: inline-block;
+    min-width: 70px;
+    text-align: center;
+}
+
+.btn-detalle,
+.btn-editar,
+.btn-eliminar {
+
+    min-width: auto !important;
+    width: auto !important;
+
+    padding: 8px 12px !important;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 6px;
+}
+
+td {
+    white-space: nowrap;
 }

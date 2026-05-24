@@ -5,49 +5,64 @@
 <html>
 <head>
     <title>Detalle Reserva</title><!-- título de la pestaña del navegador -->
+    <!-- CSS Reservas -->
+    <link rel="stylesheet"
+    href="${pageContext.request.contextPath}/resources/css/huespedes.css">
 </head>
+
 <body>
+<!-- Cabecera -->
+<div class="page-header">
+    <h3>Sistema de gestión de reservas</h3>
+    <h1>Hotel FundAula</h1>
+</div>
+<div class="divider"></div>
 
-<form:form modelAttribute="reserva">
-    <p>
-        <strong>Id de la reserva:</strong>
-        <form:input path="idReserva" disabled="true"/>
-    </p>
-    <p>
-        <strong>Id de la habitación:</strong>
-        <form:input path="idHabitacion" disabled="true"/>
-    </p>
-        <p>
-        <strong>Fecha de entrada:</strong>
-        <form:input path="fechaEntrada" disabled="true"/>
-    </p>
-        <p>
-        <strong>Fecha de salida:</strong>
-        <form:input path="fechaSalida" disabled="true"/>
-    </p>
-        <p>
-        <strong>Id del huésped:</strong>
-        <form:input path="idHuesped" disabled="true"/>
-    </p>
-    <p>
-        <strong>Tipo de pensión:</strong>
-        <form:input path="tipoPension" disabled="true"/>
-    </p>
-    <p>
-        <strong>Estado de la reserva:</strong>
-        <form:input path="estadoReserva" disabled="true"/>
-    </p>
-        <p>
-        <strong>Número de huéspedes:</strong>
-        <form:input path="numeroHuespedes" disabled="true"/>
-    </p>
-    <p>
-        <strong>Observaciones:</strong>
-        <form:input path="observaciones" disabled="true"/>
-    </p>
-</form:form>
+<!-- Contenedor principal -->
+<div class="main-card">
+    <div class="card-header-row">
+        <h2 class="card-title">Detalle Reserva</h2>
+    </div>
+    <!-- Tabla detalle -->
+    <table class="tabla-detalle">
+        <tr>
+            <td class="detalle-label">Id de la reserva</td>
+            <td class="detalle-valor">${reserva.idReserva}</td>
+        </tr>
+        <tr>
+            <td class="detalle-label">Habitación</td>
+            <td class="detalle-valor">${reserva.habitacion.numeroHabitacion}</td>
+        </tr>
+        <tr>
+            <td class="detalle-label">Fecha de entrada</td>
+            <td class="detalle-valor">${reserva.fechaEntrada}</td>
+        </tr>
+        <tr>
+            <td class="detalle-label">Fecha de salida</td>
+            <td class="detalle-valor">${reserva.fechaSalida}</td>
+        </tr>
+        <tr>
+            <td class="detalle-label">Tipo de pensión</td>
+            <td class="detalle-valor">${reserva.tipoPension}</td>
+        </tr>
+        <tr>
+            <td class="detalle-label">Estado de la reserva</td>
+            <td class="detalle-valor">${reserva.estadoReserva}</td>
+        </tr>
+        <tr>
+            <td class="detalle-label">Número de huéspedes</td>
+            <td class="detalle-valor">${reserva.numeroHuespedes}</td>
+        </tr>
+        <tr>
+            <td class="detalle-label">Observaciones</td>
+            <td class="detalle-valor">${reserva.observaciones}</td>
+        </tr>
+    </table>
 
-<a href="${pageContext.request.contextPath}/reservas">Volver</a><!-- botón volver para cambiar de vista al listado-->
+    <div class="footer-nav">
+        <a href="${pageContext.request.contextPath}/reservas"class="btn-volver">← Volver</a><!-- botón volver para cambiar de vista al listado-->
+    </div>
+</div>
 
 </body>
 </html>

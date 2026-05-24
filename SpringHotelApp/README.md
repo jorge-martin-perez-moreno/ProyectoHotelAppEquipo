@@ -72,6 +72,11 @@ ORDEN CORRECTO PARA EJECUTAR LOS SCRIPTS:
 4. hoteldb_habitaciones.sql  
 5. hoteldb_reservas.sql  
 6. hoteldb_incidencias.sql  
+7. hoteldb_datos_usuarios.sql
+8. hoterdb_datos_huespedes.sql
+9. hoteldb_datos_habitaciones.sql
+10. hoteldb_datos_incidencias.sql
+11. hoteldb_datos_reservas.sql
 
 <!--IA: se pidió a chat gpt que hiciera responsive la imagen luego en las otras copié y pegué cambiando la imagen en cada una-->
 
@@ -161,10 +166,6 @@ Los scripts SQL se encuentran en la carpeta /sql del proyecto.
 ### 🚀 Servidor
 - 🌐 **Apache Tomcat 9**
 
-### 🔐 Seguridad y logging
-- 📜 **Log4j** (logging)  
-- 🔒 **BCrypt** (seguridad)  
-
 ---
 
 ## 🧱 Estructura del proyecto:
@@ -182,7 +183,6 @@ es.accenture.entity       → entidades de la bbdd
 es.accenture.exceptions   → excepciones personalizadas
 es.accenture.interfaces   → son las interfaces que definen los contratos de métodos que se deben cumplir
 es.accenture.services     → PAQUETE SERVICES: es la lógica, se manda a DAO para las consultas a BBDD
-es.accenture.utils        → Tareas adicionales
 ```
 <p align="center">
   <img src="docs/images/estructura de paquetes.png" style="width: 50%; max-width: 900px; height: auto;" />
@@ -236,7 +236,11 @@ GuardarException → error al guardar
 EliminarException → error al eliminar
 ActualizarException → error al actualizar
 BuscarException → error al buscar
-PONER AQUÍ LAS QUE SE USEN EN LA PARTE DEL LOGIN
+CampoCredencialesIncorrectasException → error en credenciales
+CampoCredencialesVacioException → error por credenciales vacías
+HuespedCamposVaciosException → error por campos vacíos
+HuespedDatosNoValidosException → error en datos de huesped
+HuespedNoEncontradoException → error al buscar huesped
 ```
 
 ### PAQUETE INTERFACES: son las interfaces que definen los contratos de métodos que se deben cumplir
@@ -264,23 +268,13 @@ LoginService → servicio que se encarga de la lógica de Login
 ReservaService → servicio que se encarga de la lógica de Reservas
 ```
 
-### PAQUETE UTILS: tareas adicionales
-
-```
-nombreUtils → 
-nombreUtils → 
-nombreUtils → 
-nombreUtils → 
-```
-
-### VISTAS: (van en WebInf, Vistas)
+### VISTAS: (van en WebInf, Vistas menos Login que va en WebApp)
 
 ```
 DetalleHabitacion.jsp → vista de la pantalla de detalle de cada habitación
 DetalleIncidencia.jsp → vista de la pantalla de detalle de cada incidencia
 DetalleHuesped.jsp → vista de la pantalla de detalle de cada huésped
 DetalleReserva.jsp → vista de la pantalla de detalle de cada reserva
-Login.jsp → vista de la pantalla de inicio de sesión para introducir credenciales
 Principal.jsp → vista de la pantalla principal tras iniciar sesión
 Huespedes.jsp → vista de la pantalla del listado de huespedes
 Habitaciones.jsp → vista de la pantalla del listado de habitaciones
@@ -290,6 +284,9 @@ FormularioHabitacion.jsp → vista de la pantalla de creación para nueva habita
 FormularioIncidencia.jsp → vista de la pantalla de creación para nueva incidencia
 FormularioHuesped.jsp → vista de la pantalla de creación para nuevo huésped
 FormularioReserva.jsp → vista de la pantalla de creación para nueva reserva
+
+Esta va en WebApp porque es la de acceso:
+Login.jsp → vista de la pantalla de inicio de sesión para introducir credenciales
 ```
 
 (en SRC, Main, Resources)
@@ -349,20 +346,130 @@ Merge final a main
 
 A Javi → Habitaciones + Incidencias + Reservas
 <br>
-B Jorge → Huéspedes + Login + Reservas
+B Daniel → Huéspedes + Login + Reservas
 
 ---
 
-## ⚠️ Conflictos de merge: ------------------> apuntar los que surjan
+## ⚠️ Conflictos de merge:
 
 Se resolvieron conflictos principalmente en:
 
-- configuración de Spring ---------------> es un ejemplo, borrar luego  
-- controladores compartidos -------------> es un ejemplo, borrar luego  
-- ficheros JSP comunes ------------------> es un ejemplo, borrar luego  
-
-Resolución manual combinando cambios de los dos desarrolladores.
-
+- Conflicto 1:
+<br>
+	Motivo:<br>
+	Porque la rama Login tenía comentarios en Usuario, UsuarioService y la lógica y en develop ya existían<br>
+	Porque la rama Login tenía las jsp de otras ramas sin desarrollar con el nombre en minúsculas 	anterior al rename<br>
+	Porque habían cambios en css compartidos<br>
+	Solución:<br>
+	Se priorizan los cambios de develop que es la rama más actualizada y se elimina css antiguo 	de principal en desuso<br>
+	Modo:<br>
+	Se resuelve con el editor manual (notepad)<br>
+<br>
+<p align="center">
+  <img src="docs/images/errores github.png" style="max-width: 100%; height: auto;" />
+  <br>
+  <em>Captura de algunos de los errores que marcaba Github</em>
+</p>
+	<br>
+- Conflicto 2:<br>
+	Motivo:<br>
+	Porque la rama feature/habitaciones necesitaba actualizarse con los cambios recientes de 	develop<br>
+	Porque develop ya contenía modificaciones en vistas jsp, controladores y navegación 	realizadas por otras ramas<br>
+	Porque ambas ramas modificaban archivos relacionados con habitaciones y vistas copartidas 	(las minúsculas de rename)<br>
+	Solución:<br>
+	Se deja todo lo de develop que es lo más actualizado<br>
+	Se adaptan las vistas y todo lo afectado<br>
+	Modo:<br>
+	Se resuelve con el editor manual (notepad)<br>
+		<br>
+	<p align="center">
+  <img src="docs/images/conflicto 2a.png" style="max-width: 100%; height: auto;" />
+  <br>
+  <em>captura de pantalla del conflicto</em>
+</p>
+	<br>
+		<p align="center">
+  <img src="docs/images/conflicto 2b.png" style="max-width: 100%; height: auto;" />
+  <br>
+  <em>captura de pantalla del conflicto</em>
+</p>
+- Conflicto 3:<br>
+	Motivo:<br>
+	Porque la rama huesped contenía renombrados de vistas jsp y eliminación de archivos que en 	develop seguían existiendo o habían sido modificados:<br>
+	Porque ambas ramas modificaban archivos compartidos como Usuario.java y vistas relacionadas 	con navegacion y login<br>
+	Porque algunas jsp seguían usando nombres antiguos antes del rename realizado en develop<br>
+	Solución:<br>
+	En este punto se consultó a Chat GPT al persistir y haber borrado varias veces los errores y 	volver y nos aconsejó hacer una rama limpia para sincronizarla desde cero mejor<br>
+	Se creó la rama feature/huesped-clean pero en vez de sincronizar aunque hubiéramos borrado 	los archivos incorrectos dio los mismos problemas así que se editó poco a poco<br>
+	Primero se creó la rama feature/huesped-clean tras intentar borrar los archivos y 	sincronizar la rama huesped con develop para intentar hacer un merge limpio<br>
+	Finalmente tras repetirse los mismos problemas se priorizan los cambios de develop que son 	los actualizados<br>
+	Se mantuvieron los renames de las jsp y se borraron localmente las antiguas<br>
+	Modo:<br>
+	Se resuelve con el editor manual (notepad)<br>
+		<br>
+	<p align="center">
+  <img src="docs/images/conflicto 3c.png" style="max-width: 100%; height: auto;" />
+  <br><br><br>
+  <br>
+  <em>captura de pantalla del conflicto</em>
+</p>
+	<br>
+		<p align="center">
+  <img src="docs/images/conflicto 3d.png" style="max-width: 100%; height: auto;" />
+  <br><br><br>
+  <br>
+  <em>captura de pantalla del conflicto</em>
+</p>
+	<br>
+		<p align="center">
+  <img src="docs/images/conflicto 3e.png" style="max-width: 100%; height: auto;" />
+  <br><br><br>
+  <br>
+  <em>captura de pantalla del conflicto</em>
+</p>
+	<br>
+- Conflicto 4:<br>
+	Motivo:<br>
+	Porque la rama incidencias modificaba archivos de configuración (comentarios de los dos) y 	vistas jsp que también habían sido modificados en develop (las mayúsculas) y seguía 	reconociendo los archivos con minúsculas aunque las habíamos borrado<br>
+	Porque HibernateConfig.java tenía cambios en configuración e imports<br>
+	Solución:<br>
+	En este punto se consultó a Chat GPT al persistir y haber borrado varias veces los errores y 	volver y nos aconsejó hacer una rama limpia para sincronizarla de cero mejor<br>
+	Primero se creó la rama feature/incidencias-clean tras intentar borrar los archivos y 	sincronizar la rama huesped con develop para intentar hacer un merge limpio<br>
+	Finalmente tras repetirse los mismos problemas se priorizan los cambios de develop que son 	los actualizados<br>
+	Se mantuvieron los renames de las jsp y se borraron localmente las antiguas<br>
+	Modo:<br>
+	Se resuelve con el editor manual (notepad)<br>
+		<br>
+- Conflicto 5:<br>
+	Motivo:<br>
+	Porque después de resolver el conflicto principal de incidencias seguían existiendo archivos 	pendientes y cambios sin sincronizar correctamente (aunque los habíamos borrado!!!)<br>
+	Porque algunos cambios de la rama incidencias-clean seguían entrando en conflicto con 	develop tras el merge inicial<br>
+	Porque seguían las diferencias en vistas jsp reconociendo archivos que borrábamos una y otra 	vez (los de las minúsculas del rename)<br>
+	Porque HibernateConfig.java tenía cambios en configuración e imports (eran comentarios 	distintos de cada uno)<br>
+	Solución:<br>
+	En este punto se consultó a Chat GPT tras múltiples intentos de borrar los errores y 	sincronizar las ramas y nos aconsejó hacer una rama limpia para sincronizarla de cero 	mejor<br>
+	Finalmente tras repetirse los mismos problemas se priorizan los cambios de develop que son 	los actualizados<br>
+	Se mantuvieron los renames de las jsp y se borraron localmente las antiguas<br>
+	Modo:<br>
+	Se resuelve con el editor manual (notepad)<br>
+		<br>
+- Conflicto 6:<br>
+	Motivo:<br>
+	Porque Reservas contenía cambios en vistas jsp (mayúsculas) que también habían sido 	modificados en develop<br>
+	Porque varias ramas trabajaban simultáneamente sobre archivos compartidos relacionados con 	reservas y menús de navegación (nos duplicó Reservas, interfaces y otros)<br>
+	Porque seguían existiendo archivos antiguos que habíamos eliminado mil veces -_- y 	diferencias derivadas de los rename realizados anteriormente<br>
+	Solución:<br>
+	Se crea la rama feature/reservas-clean para intentar hacer el merge limpio (consejo de Chat 	GPT) pero da los mismos problemas y se tiene que hacer manual poco a poco.<br>
+	Se priorizan los cambios de develop porque es la más actualizadazbrZ
+	Se meten manualmente solo los cambios compatibles de Reservas<br>
+	Se editan algunos comentarios que también daban conflicto por tenerlos puestos los dos 	diferentes<br>
+	Se mantuvieron los renames de las jsp y se borraron localmente las antiguas<br>
+	Modo:<br>
+	Se resuelve con el editor manual (notepad)<br>
+		<br>
+	
+	Se editan posteriormente de forma manual todas las ramas de Github desde la plataforma para eliminar archivos duplicados y fuera de lugar.
+	
 ---
 
 ## ✅ Funcionalidades:
@@ -419,14 +526,14 @@ Habitaciones.jsp muestra listado
 
 ---
 
-## 🔒 Validaciones de las reglas de negocio (a revisar tema historiales)
+## 🔒 Validaciones de las reglas de negocio
 
 ### 🏨 Eliminación de habitaciones
 
 **Incidencias**
 - abierta → ❌ No
 - en_curso → ❌ No
-- cerrada → ✔️ Sí
+- cerrada → ❌ No
 
 **Reservas**
 - pendiente → ❌ No
@@ -452,14 +559,20 @@ Habitaciones.jsp muestra listado
 
 - abierta → ❌ No
 - en_proceso → ❌ No
-- cerrada → ❌ No
+- cerrada → ✔️ Sí
+
+### 📅 Eliminación de reservas
+
+- pendiente → ❌ No
+- confirmada → ❌ No
+- cancelada → ❌ No
 
 ---
 
 <!--IA: se preguntó a chat gpt como dejar el texto del Mapeo como lo hice y que saliera igual en el Preview y me dijo que poniendo esto al principio "```text" y esto al final "```"-->
 
+## 🔄 MAPEO ORM Y RELACIONAL POR ENTITIES:
 ```text
-MAPEO ORM Y RELACIONAL POR ENTITIES:
 
 ENTITY Habitacion:
 
@@ -561,13 +674,47 @@ observaciones                         - @Column(name="observaciones")           
 ## 🔑 Credenciales de prueba:
 
 ```
-recepcionista / recep123
-supervisor / super123
+recepcionista / daniH ---> 5678def
+supervisor    / javiR ---> 1234abc
 ```
+
+
+  <img src="docs/images/datos usuarios.png" style="max-width: 100%; height: auto;" />
+  <br>
+  <br>
+  <em>script creacion credenciales usuarios</em>
+</p>
+	<br>
+	  <img src="docs/images/datos huespedes.png" style="max-width: 100%; height: auto;" />
+  <br>
+  <br>
+  <em>script creacion huespedes de prueba</em>
+</p>
+	<br>
+	<img src="docs/images/datos habitaciones.png" style="max-width: 100%; height: auto;" />
+  <br>
+  <br>
+  <em>script creacion habitaciones de prueba</em>
+</p>
+	<br>
+	<img src="docs/images/datos reservas.png" style="max-width: 100%; height: auto;" />
+  <br>
+  <br>
+  <em>script creacion reservas de prueba</em>
+</p>
+	<br>
+	<img src="docs/images/datos incidencias.png" style="max-width: 100%; height: auto;" />
+  <br>
+  <br>
+  <em>script creacion incidencias de prueba</em>
+</p>
+	<br>
+	
+	
 
 ---
 
-## Documentación:
+## 🗂️ Documentación:
 
 Ver carpeta /docs:
 
@@ -579,7 +726,7 @@ Proyecto (PDF)
 
 <!--IA: se ha usado chat gpt para cambiar el formato de la tabla que entregó el profesor y que se vea bien en el preview -->
 
-## Uso de inteligencia artificial Alumno A
+## 🤖 Uso de inteligencia artificial Alumno A
 ### Herramientas utilizadas
 **Alumno A — Javier Roldán Pomareta
 - ChatGPT (versión: 5.5)
@@ -595,6 +742,8 @@ Usos:
 - Pedir explicaciones de apuntes y temarios que no entendía
 - Preguntas sobre HTML básico que no me acordaba
 - Pedir explicación sobre errores de consola
+- Pedir explicación y consejo sobre resolución de conflictos merge repetidos
+- Implementar estilos en vistas y arreglos css varios
 
 ---
 
@@ -651,7 +800,7 @@ Tengo estas dependencias que he ido buscando en foros y copiando de otros proyec
 
 <td>No</td>
 <td>No</td>
-<</tr>
+</tr>
 
 <tr>
 <td>Entidad Usuario / DAO Usuario / LoginController</td>
@@ -684,11 +833,13 @@ He hecho una lista del Mapeo ORM y al pegarlo en el README de mi proyecto se pie
 Dame un icono para pegar en cada título que corresponda con los nombres de los apartados</br>
 Dime como meter una línea al final de cada apartado del readme</br>
 Dime una descripción buena para poner en este readme</br>
+Estos son los css que ha puesto mi compañero en las vistas del proyecto, dime en qué parte tengo que pegarlos y si tengo que cambiar algo más para que queden con su estilo, los puedo pegar en cualquier parte?
+<br>
 </td>
 </tr>
 </table>
 
-<<tr>
+<tr>
 <td>Documentación (Javadoc)</td>
 <td>No</td>
 </tr>
@@ -706,15 +857,24 @@ Puedo explicar qué hace cada fragmento marcado como IA, justificar por qué enc
 
 ---
 
-## Uso de inteligencia artificial Alumno B
+## 🤖 Uso de inteligencia artificial Alumno B
 ### Herramientas utilizadas
 **Alumno B — Jorge Martín Pérez-Nieto
-- 
+- ChatGPT (versión: 5.5)
 
 Usos:
 
-- 
-
+- Confirmar validez de las clases de configuración rápidamente.
+- Resolver la falta de una dependencia del POM.
+- Confirmar resto de dependencias del POM.
+- Buscar fallos de sintáxis
+- Pedir explicaciones de funcionamientos
+- Pedir explicaciones de buenas prácticas
+- Pedir explicaciones de apuntes y temarios que no entendía
+- Preguntas sobre HTML básico que no me acordaba
+- Pedir explicación sobre errores de consola
+- Pedir explicación y consejo sobre resolución de conflictos merge repetidos
+- Implementar estilos en vistas y arreglos css varios
 
 ---
 
@@ -729,29 +889,28 @@ Usos:
 
 <tr>
 <td>POM</td>
-<td>Sí/NO</td>
-<td>...</br>
-...
+<td>Sí</td>
+<td>En Eclipse me dió un error en el POM, porque Javi tiene otra version de Eclipse, faltaba la dependencia de plugging de Maven</br>
 </td>
 </tr>
 
 <tr>
 <td>Configuración de Spring (XML / Java Config)</td>
-<td>Sí/NO</td>
-<td>...</td>
+<td>Sí</td>
+<td>Hemos copiado estas clases de configuración de un proyecto para meterlas en el nuestro que es un proyecto Maven con configuración por clases e Hibernate. Que nos revise las clases configuracion y estudiar que hace cada clase y cada metodo para entender bien el flujo de la aplicación</td>
 </tr>
 
 <tr>
 <td>Excepciones personalizadas</td>
-<td>Sí/NO</td>
-<td>...</td>
+<td>NO</td>
+<td></td>
 <td></td>
 </tr>
 
 <tr>
 <td>Entidad / DAO / Controller / vistas de Habitaciones</td>
-<td>Sí/NO</td>
-<td>...</td>
+<td>NO</td>
+<td></td>
 </tr>
 
 <tr>
@@ -762,48 +921,58 @@ Usos:
 
 <tr>
 <td>Entidad Reserva + DAO de Reservas (común)</td>
-<td>Sí/NO</td>
-<td>...</td>
+<td>NO</td>
+<td></td>
 </tr>
 
 <tr>
 <td>Reservas — listado / detalle / eliminación + JSPs</td>
 
-<td>Sí/NO</td>
-<td>...</td>
-<</tr>
+<td>NO</td>
+<td></td>
+</tr>
 
 <tr>
 <td>Entidad Usuario / DAO Usuario / LoginController</td>
-<td>Sí/NO</td>
-<td>...</td>
+<td>NO</td>
+<td></td>
 </tr>
 
 <tr>
 <td>Entidad / DAO / Controller / vistas de Huéspedes</td>
-<td>Sí/NO</td>
-<td>...</td>
+<td>NO</td>
+<td></td>
 </tr>
 
 <tr>
 <td>Reservas — alta / modificación + FormularioReserva.jsp</td>
-<td>Sí/NO</td>
-<td>...</td>
+<td>NO</td>
+<td></td>
 </tr>
 
 <tr>
 <td>Documentación (Readme)</td>
-<td>Sí/NO</td>
-<td>...</br>
-...</br>
+<td>Sí</td>
+<td>Dime cómo se ponen los títulos en grande en el readme</br>
+Dime cómo se pone color morado de fondo en el título principal del readme y ponle un dibujito</br>
+Dame el código para meter una imagen en un div en el readme para que quede responsive</br>
+El profe me ha dado esta tabla para meter en el readme pero se ve muy mal en el preview, dámela en h
+tml</br>
+He hecho una lista del Mapeo ORM y al pegarlo en el README de mi proyecto se pierde el formato, dime cómo mantengo el formato exacto del texto y me dijo que así, poniendo esto al principio: "```text" y esto al final: "```"
+<br>
+Dame un icono para pegar en cada título que corresponda con los nombres de los apartados</br>
+Dime como meter una línea al final de cada apartado del readme</br>
+Dime una descripción buena para poner en este readme</br>
+Estos son los css que ha puesto mi compañero en las vistas del proyecto, dime en qué parte tengo que pegarlos y si tengo que cambiar algo más para que queden con su estilo, los puedo pegar en cualquier parte?
+<br>
 </td>
 </tr>
 </table>
 
-<<tr>
+<tr>
 <td>Documentación (Javadoc)</td>
-<td>Sí/NO</td>
-<td>...</td>
+<td>NO</td>
+<td></td>
 </tr>
 </table>
 
@@ -821,4 +990,87 @@ Puedo explicar qué hace cada fragmento marcado como IA, justificar por qué enc
 
 ## Capturas de pantalla:
 
-Acordarnos de poner aquí al final cuando acabemos todo unas capturas de pantalla de la app funcionando que no se tarda nada y queda muy bien.
+<p align="center">
+  <img src="docs/images/login.png" width="500" />
+  <br>
+  <em>Captura de pantalla de login</em>
+</p>
+<br>
+<p align="center">
+  <img src="docs/images/principal.png" width="500" />
+  <br>
+  <em>Captura de pantalla de principal</em>
+</p>
+<br>
+<p align="center">
+  <img src="docs/images/lista habitaciones.png" width="500" />
+  <br>
+  <em>Captura de pantalla de lista habitaciones</em>
+</p>
+<br>
+<p align="center">
+  <img src="docs/images/detalle habitación.png" width="500" />
+  <br>
+  <em>Captura de pantalla de detalle habitación</em>
+</p>
+<br>
+<p align="center">
+  <img src="docs/images/editar habitación.png" width="500" />
+  <br>
+  <em>Captura de pantalla de editar habitación</em>
+</p>
+<br>
+<p align="center">
+  <img src="docs/images/huespedes.png" width="500" />
+  <br>
+  <em>Captura de pantalla de huespedes</em>
+</p>
+<br>
+<p align="center">
+  <img src="docs/images/detalle huesped.png" width="500" />
+  <br>
+  <em>Captura de pantalla de detalle huesped</em>
+</p>
+<br>
+<p align="center">
+  <img src="docs/images/editar huesped.png" width="500" />
+  <br>
+  <em>Captura de pantalla de editar huesped</em>
+</p>
+<br>
+<p align="center">
+  <img src="docs/images/reservas.png" width="500" />
+  <br>
+  <em>Captura de pantalla de reservas</em>
+</p>
+<br>
+<p align="center">
+  <img src="docs/images/detalle reserva.png" width="500" />
+  <br>
+  <em>Captura de pantalla de detalle reserva</em>
+</p>
+<br>
+<p align="center">
+  <img src="docs/images/editar reserva.png" width="500" />
+  <br>
+  <em>Captura de pantalla de editar reserva</em>
+</p>
+<br>
+<p align="center">
+  <img src="docs/images/incidencias.png" width="500" />
+  <br>
+  <em>Captura de pantalla de incidencias</em>
+</p>
+<br>
+<p align="center">
+  <img src="docs/images/detalle incidencia.png" width="500" />
+  <br>
+  <em>Captura de pantalla de detalle incidencia</em>
+</p>
+<br>
+<p align="center">
+  <img src="docs/images/editar incidencia.png" width="500" />
+  <br>
+  <em>Captura de pantalla de editar incidencia</em>
+</p>
+<br>

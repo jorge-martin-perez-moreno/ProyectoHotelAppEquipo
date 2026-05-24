@@ -1,4 +1,4 @@
-package es.accenture.service;                    //esto lo hace cualquiera entero A o B
+package es.accenture.service; 
 
 import java.util.List;
 
@@ -14,11 +14,28 @@ import es.accenture.exceptions.GuardarException;
 import es.accenture.interfaces.IReservasDao;
 import es.accenture.interfaces.IReservasService;
 
+/**
+ * Clase de servicio encargada de gestionar la logica de negocio de Reserva.
+ * 
+ * Esta clase pone las validaciones y reglas para hacer el crud y luego ir al dao.
+ * 
+ * @author jorge y javi
+ * @version 1.0
+ */
 @Service //Anotación para decirle a Spring que es un service
 public class ReservasService implements IReservasService{
 
+	/*
+	 * Atributo donde se almacena el DAO de reservas para acceder a bbdd
+	 */
 	private IReservasDao reservaDao;
 
+	/**
+	 * Constructor por parametros en el que se realiza la inyeccion
+	 * de dependencias del DAO de reservas.
+	 * 
+	 * @param reservaDao DAO encargado del acceso a datos de reservas
+	 */
 	@Autowired //inyección por constructor
 	public ReservasService(IReservasDao reservaDao) {
 		
@@ -26,7 +43,11 @@ public class ReservasService implements IReservasService{
 	    
 	}
 	
-	//a partir de aquí hay que ir llamando a los métodos del contrato con IReservaService y meter la lógica y luego ir llamando a los que ReservaDao ha ido sobreescribiendo de IReservaDao y así sacar datos
+	/**
+	 * Metodo encargado de obtener el listado de reservas de bbdd
+	 * 
+	 * @return lista de objetos Reserva
+	 */
 	//método para obtener todas las reservas
 	@Override //Anotación para sobreescribir el método de la interfaz
 	public List<Reserva>buscarReservas() {
@@ -36,12 +57,18 @@ public class ReservasService implements IReservasService{
 		
 	}
 
+	/**
+     * Metodo encargado de guardar una reserva en bbdd
+     * 
+     * @param reserva objeto Reserva con la informacion a guardar
+     * @throws GuardarException excepcion lanzada si los datos no son validos
+     */
     //método para el alta de una reserva
     @Override //Anotación para sobreescribir el método de la interfaz
 	public void guardarReserva(Reserva reserva)throws GuardarException {
 		// TODO Auto-generated method stub
 		
-    	if(reserva==null){throw new GuardarException("Error al guardar la reserva");//si no hay reserva lanza excepción
+    	if(reserva==null){throw new GuardarException("Error al guardar la reserva");
     	
     	}
     	
@@ -49,18 +76,31 @@ public class ReservasService implements IReservasService{
         
 	}
 
+    /**
+     * Metodo encargado de actualizar una reserva en bbdd
+     * 
+     * @param reserva objeto Reserva con la informacion modificada
+     * @throws ActualizarException excepcion lanzada si los datos no son validos
+     */
     //método para la modificación de una reserva
     @Override //Anotación para sobreescribir el método de la interfaz
 	public void actualizarReserva(Reserva reserva)throws ActualizarException {
 		// TODO Auto-generated method stub
     	
-    	if(reserva==null){throw new ActualizarException("Error al actualizar la reserva");}//si no hay reserva lanza excepción
+    	if(reserva==null){throw new ActualizarException("Error al actualizar la reserva");}
     	
         // aquí hay que poner la lógica
         reservaDao.actualizarReserva(reserva); //aquí se llama a dao para actualizar en la bbdd
 		
 	}
 
+    /**
+     * Metodo encargado de eliminar una reserva de bbdd
+     * 
+     * @param idReserva id de la reserva que se desea eliminar
+     * @throws EliminarException excepcion lanzada si la reserva no puede eliminarse
+     * @throws BuscarException excepcion lanzada si la reserva no existe
+     */
     @Transactional //hay que añadirlo con el import porque sino llama fuera de la transación y rompe
     //método para la eliminación de una reserva
     @Override //Anotación para sobreescribir el método de la interfaz
@@ -87,6 +127,13 @@ public class ReservasService implements IReservasService{
     	
 	}
 
+    /**
+     * Metodo encargado de obtener una reserva de bbdd por el id
+     * 
+     * @param idReserva identificador de la reserva que se quiere consultar
+     * @return objeto Reserva encontrado
+     * @throws BuscarException excepcion lanzada si la reserva no existe
+     */
     //método para obtener una reserva por Id
     @Override //Anotación para sobreescribir el método de la interfaz
 	public Reserva buscarReservaPorId(int idReserva)throws BuscarException {

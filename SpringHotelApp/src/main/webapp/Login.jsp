@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- CSS Login -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/login.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/Login.css">
 
     <title>Inicio de sesión</title>
 </head>
@@ -35,23 +35,24 @@
 
             <!-- Usuario -->
             <div class="input-group-login">
-                <input name="usuario" type="text" class="form-control-login" placeholder="Usuario">
+                <input name="usuario" type="text" placeholder="Usuario">
             </div>
 
             <!-- Password -->
             <div class="input-group-login">
-                <input name="password" type="password" class="form-control-login" placeholder="Password">
+                <input name="password" type="password" placeholder="Password">
             </div>
 
             <!-- Botón Login -->
             <div class="input-group-login">
-                <button type="submit" class="btn-login">Login</button>
+                <button type="submit">Login</button>
             </div>
 
         </form>
+
 		<%-- Mensaje de error — se muestra solo si el Controller lo añade al modelo --%>
 		<c:if test="${not empty error}">
-    		<div class="error-message">
+    		<div>
         		${error}
     		</div>
 		</c:if>

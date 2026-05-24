@@ -1,8 +1,10 @@
 package es.accenture.service;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import es.accenture.entity.Huesped;
 import es.accenture.exceptions.HuespedCamposVaciosException;
 import es.accenture.exceptions.HuespedDatosNoValidosException;
@@ -100,6 +102,13 @@ public class HuespedService implements IHuespedService{
 //			Lanza excepcion 'HuespedNoEncontradoException'.
 			throw new HuespedNoEncontradoException(HuespedNoEncontradoException.HUESPED_NO_ENCONTRADO);
 		}
+		
+		// No eliminar si tiene reservas
+	    if(huesped.getReservas() != null && !huesped.getReservas().isEmpty()) {
+
+	        throw new HuespedNoEncontradoException(
+	                "El huésped tiene reservas y no se puede eliminar");
+	    }
 		
 //		Llamamos al metodo 'eliminarHuesped()' del DAO.
 		huespedDao.eliminarHuesped(id);
