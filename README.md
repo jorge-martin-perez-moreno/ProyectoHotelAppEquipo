@@ -346,7 +346,7 @@ Merge final a main
 
 A Javi → Habitaciones + Incidencias + Reservas
 <br>
-B Daniel → Huéspedes + Login + Reservas
+B Jorge → Huéspedes + Login + Reservas
 
 ---
 
