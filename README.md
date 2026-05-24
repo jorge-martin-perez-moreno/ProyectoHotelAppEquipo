@@ -674,8 +674,8 @@ observaciones                         - @Column(name="observaciones")           
 ## 🔑 Credenciales de prueba:
 
 ```
-recepcionista / daniH ---> 5678def
-supervisor    / javiR ---> 1234abc
+recepcionista / recep ---> recep123
+supervisor    / super ---> admin123
 ```
 
 
