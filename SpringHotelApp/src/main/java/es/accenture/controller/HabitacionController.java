@@ -18,41 +18,70 @@ import es.accenture.exceptions.EliminarException;
 import es.accenture.exceptions.GuardarException;
 import es.accenture.interfaces.IHabitacionService;
 
-@Controller //Anotación que le dice a Spring que esta clase es un controller, es como zidane reparte juego y mueve el balón, el dispatcherServlet es el entrenador que dice a que medio hay que poner en el campo, vinicius es el service porque hace el regate, luego valverde conecta con bbdd y centra y cristiano es la jsp remata y muestra el resultado
+/**
+ * Controlador encargado de gestionar las peticiones relacionadas con las habitaciones.
+ * 
+ * Esta clase permite hacer el crud.
+ * 
+ * @author jorge y javi
+ * @version 1.0
+ */
+@Controller 
 @RequestMapping("/habitaciones") //Anotación que asigna una url al controller, es la ruta general y luego se especifica con getmapping para donde va
 public class HabitacionController {
 
-    //@Autowired // inyección de dependencias del service para no hacer new IHabitacionService myService=new habitacionService crea el objeto automático
-    //private IHabitacionService habitacionService; //se quita porque Daniel lo tiene por constructor y es mejor práctica
-
+	/*
+	 * Atributo donde se almacena todo el servicio de habitaciones. Se utiliza la
+	 * interfaz para desacoplar (buena práctica).
+	 */
 	private IHabitacionService habitacionService;
 
+	/**
+	 * Constructor por parametros en el que se realiza la inyeccion de
+	 * dependencias del servicio de habitaciones.
+	 * 
+	 * @param habitacionService servicio encargado de la logica de habitaciones
+	 */
 	@Autowired // inyección en el constructor
 	public HabitacionController(IHabitacionService habitacionService) {
 	    this.habitacionService = habitacionService;
 	}
 	
-    @GetMapping //Anotación que dice cuál es la url de entrada que coge el método, cuando alguien entre en habitaciones, se ejecuta el método listarHabitaciones, va al service, de ahí al dao, lo saca de bbdd, lo guarda en la lista y devuelve la vista habitaciones con el listado
+	/**
+	 * Metodo que recoge las peticiones dirigidas a la vista de habitaciones,
+	 * obtiene la lista completa de habitaciones registradas.
+	 * 
+	 * @param model objeto que permite almacenar atributos para enviarlos a la vista
+	 * @return String con la vista 'Habitaciones'
+	 */
+    @GetMapping //Anotación que dice cuál es la url de entrada
     public String obtenerHabitaciones(Model model) {
 
-        List<Habitacion>habitaciones=habitacionService.buscarHabitaciones(); //llama al service de ahí al dao y a bbdd y lo guarda en la lista habitaciones
+        List<Habitacion>habitaciones=habitacionService.buscarHabitaciones(); //lista donde se guardará la consulta
 
-        model.addAttribute("habitaciones",habitaciones); //model es la caja que guarda la lista habitaciones en model con el nombre habitaciones, controller es repartidor, model mochila con datos, jsp pantalla que enseña datos, luego se recogen los datos con ${habitaciones} expression language desde la jsp
+        model.addAttribute("habitaciones",habitaciones);
 
-        return "Habitaciones"; //devuelve la vista jsp de habitaciones y muestra el listado
+        return "WEB-INF/vistas/Habitaciones";
     }
 
+    /**
+     * Metodo que recoge las peticiones de la vista de detalle de una habitacion.
+     * 
+     * @param id    identificador de la habitacion que se desea consultar
+     * @param model objeto que permite almacenar atributos y los mensajes de error
+     * @return String con la vista DetalleHabitacion o return a la lista
+     */
     // método para ver el detalle de una habitación
-    @GetMapping("/detalle") //Anotación que dice cuál es la url de entrada que coge el método, cuándo alguien entre en id se ejecuta el método verDetalle, hace la caja en model con "habitacion" y devuelve la vista detalleHabitacion
-    public String detalleHabitacion(@RequestParam int id,Model model) { //PathVariable es la anotación que recoge un valor que viene dentro de la url como habitaciones/5 o habitaciones/4 si se cambia el valor de id por ejemplo REST
+    @GetMapping("/detalle") //Anotación que dice cuál es la url de entrada
+    public String detalleHabitacion(@RequestParam int id,Model model) {
     	
     	try {
     		
-        Habitacion habitacion=habitacionService.buscarHabitacionPorId(id); //obtiene una habitación por su Id a través del service
+        Habitacion habitacion=habitacionService.buscarHabitacionPorId(id);
 
-        model.addAttribute("habitacion",habitacion); //model es la caja que guarda el objeto habitacion en model con el nombre habitacion, controller es repartidor, model mochila con datos, jsp pantalla que enseña datos, luego se recogen los datos con ${habitacion} expression language desde la jsp
+        model.addAttribute("habitacion",habitacion);
 
-        return "DetalleHabitacion"; //devuelve la jsp de detalle
+        return "WEB-INF/vistas/DetalleHabitacion";
         
     }catch(BuscarException e) {
     	
@@ -60,101 +89,120 @@ public class HabitacionController {
 
 		model.addAttribute("habitaciones",habitacionService.buscarHabitaciones());
 
-		return "Habitaciones";
+		return "WEB-INF/vistas/Habitaciones";
 		
     	}
     
     }
 
+    /**
+     * Metodo que recoge las peticiones de la creacion de nueva habitacion, formulario vacio.
+     * 
+     * @param model objeto que permite almacenar atributos para enviarlos a la vista
+     * @return String con la vista FormularioHabitacion
+     */
     // método para mostrar el formulario de alta
-    @GetMapping("/nueva") //Anotación que dice cuál es la url de entrada que coge el método, cuándo alguien entre en nueva se ejecuta el método mostrarFormularioAlta, hace la caja en model con "habitacion" y devuelve la vista formularioAltaHabitacion
+    @GetMapping("/nueva") //Anotación que dice cuál es la url de entrada
     public String nuevaHabitacion(Model model) {
 
-        model.addAttribute("habitacion",new Habitacion()); //model es la caja que guarda un objeto creado nuevo de tipo habitacion en model con el nombre habitacion, controller es repartidor, model mochila con datos, jsp pantalla que enseña datos, luego se recogen los datos con ${habitacion} expression language desde la jsp
+        model.addAttribute("habitacion",new Habitacion());
 
-        return "FormularioHabitacion"; //devuelve el jsp del formulario, se cambia porque da problemas con editar y se hace otra jsp solo para editar
+        return "WEB-INF/vistas/FormularioHabitacion";
     }
 
+    /**
+     * Metodo que recoge las peticiones de guardar o actualizar una habitacion
+     * a partir de los datos recibidos desde formulario.
+     * 
+     * @param habitacion objeto habitacion con los datos introducidos o modificados
+     * @param model      objeto que permite almacenar atributos y los mensajes de error
+     * @return redireccion a la vista principal o return al formulario
+     */
     // método para guardar habitación nueva
-    @PostMapping("/guardar") //Anotación que dice cuál es la url de entrada que coge el método guardarHabitacion, cuándo alguien pinche en guardar, rellena los datos del objeto habitacion con los datos del formulario gracias a modelAtribute (este no es como model que guarda datos en la mochila este los asigna como atributos del objeto) y llama al método del service y redirige a la vista habitaciones con el listado
-    public String guardarHabitacion(@ModelAttribute Habitacion habitacion,Model model) { //ModelAtribute hace que Spring rellene automáticamente un objeto con los datos que vienen del formulario
+    @PostMapping("/guardar") //Anotación que dice cuál es la url de entrada
+    public String guardarHabitacion(@ModelAttribute Habitacion habitacion,Model model) {
     	
     try {
     	if(habitacion.getIdHabitacion() != 0){
     		
-    		habitacionService.actualizarHabitacion(habitacion);//para modificar si existe porque sea distinta de 0 en la comparación
+    		habitacionService.actualizarHabitacion(habitacion);
     		
     	}else {
     		
-        habitacionService.guardarHabitacion(habitacion); //guarda en bbdd a través del service
+        habitacionService.guardarHabitacion(habitacion);
 
     	}
     	
-        return "redirect:/habitaciones"; // Redirige a la jsp habitaciones y muestra el listado
+        return "redirect:/habitaciones";
     }catch(GuardarException|ActualizarException e) {
     	
     	model.addAttribute("error",e.getMessage());
     	
     	model.addAttribute("habitacion",habitacion);
     	
-    	return "FormularioHabitacion";
+    	return "WEB-INF/vistas/FormularioHabitacion";
     	
     	}
     
     }
 
+    /**
+     * Metodo que recoge las peticiones de edicion de una habitacion,
+     * carga previamente los datos que hay.
+     * 
+     * @param id    identificador de la habitacion que se desea editar
+     * @param model objeto que permite almacenar atributos y los mensajes de error
+     * @return String con la vista FormularioHabitacion
+     */
     // método para mostrar el formulario para editar
-    @GetMapping("/editar") //Anotación que dice cuál es la url de entrada que coge el método, cuándo alguien pinche en editar se ejecuta el método mostrarFormularioEditar, hace la caja en model con "habitacion" y devuelve la vista formularioHabitacion
-    public String editarHabitacion(@RequestParam int id,Model model) { //PathVariable es la anotación que recoge un valor que viene dentro de la url como habitaciones/5 o habitaciones/4 si se cambia el valor de id por ejemplo REST
+    @GetMapping("/editar") //Anotación que dice cuál es la url de entrada
+    public String editarHabitacion(@RequestParam int id,Model model) {
     	
     	try {
     		
         // Busca la habitación existente
-        Habitacion habitacion=habitacionService.buscarHabitacionPorId(id); //obtiene una habitación por su id a través del service
+        Habitacion habitacion=habitacionService.buscarHabitacionPorId(id);
 
         // La manda al formulario ya relleno
-        model.addAttribute("habitacion",habitacion); //model es la caja que guarda el objeto habitacion en model con el nombre habitacion, controller es repartidor, model mochila con datos, jsp pantalla que enseña datos, luego se recogen los datos con ${habitacion} expression language desde la jsp
+        model.addAttribute("habitacion",habitacion);
 
-        return "FormularioHabitacion"; //devuelve la jsp formulario, se cambia porque da problemas con guardar y se hace otra jsp solo para editar y así para separar los caminos de guardar y editar
+        return "WEB-INF/vistas/FormularioHabitacion";
    
     	} catch (BuscarException e) {
     	
     	model.addAttribute("error",e.getMessage());
     	
-    	return "Habitaciones";
+    	return "WEB-INF/vistas/Habitaciones";
     	
     	}
     }
 
-    // método para actualizar habitación en bbdd             //este ya no se va a usar porque al arreglar el formulario se hace desde guardar
-    //@PostMapping("/actualizar") //Anotación que dice cuál es la url de entrada que coge el método actualizarHabitacion, cuándo alguien pinche en actualizar trae a través del service el método modificarHabitacion conectando con bbdd por medio del dao y trayendo los datos de habitacion con los datos del formulario gracias a modelAtribute (este no es como model que guarda datos en la mochila este los asigna como atributos del objeto) y llama al método del service y redirige a la vista habitaciones con el listado
-    //public String actualizarHabitacion(@ModelAttribute Habitacion habitacion) {
-
-        // Actualiza en BD
-        //habitacionService.modificarHabitacion(habitacion); //modifica una habitacion a través del service
-
-        // Vuelve al listado
-        //return "redirect:/habitaciones"; // Redirige a la jsp habitaciones y muestra el listado
-    //}
-
+    /**
+     * Metodo que recoge las peticiones de eliminacion de una habitacion.
+     * 
+     * @param id    identificador de la habitacion que se desea eliminar
+     * @param model objeto que permite almacenar atributos y los mensajes de error
+     * @return redireccion a la vista principal de habitaciones
+     */
     // método para eliminar habitación de bbdd
-    @GetMapping("/eliminar") //Anotación que dice cuál es la url de entrada que coge el método, cuándo alguien pinche en eliminar se ejecuta el método eliminarHabitacion, ejecuta el método del service y lo borra de bbdd a través del dao, luego redirige a la jsp habitaciones y muestra el listado
-    public String eliminarHabitacion(@RequestParam int id,Model model) { //PathVariable recoge el id de la url y se crea un objeto model de tipo Model para poder usarlo
+    @GetMapping("/eliminar") //Anotación que dice cuál es la url de entrada
+    public String eliminarHabitacion(@RequestParam int id,Model model) {
     	try {
     		
-    		habitacionService.eliminarHabitacion(id); // borra de bbdd a través del service
+    		habitacionService.eliminarHabitacion(id);
     	
     	}catch(EliminarException | BuscarException e){
     		
-    		model.addAttribute("error",e.getMessage()); //crea la caja model donde se añade el error que recupera el mensaje de la excepción
+    		model.addAttribute("error",e.getMessage());
     		
-    		model.addAttribute("habitaciones",habitacionService.buscarHabitaciones()); //se vuelve a cargar la lista de habitaciones porque sino al salir el mensaje en rojo no aparece
+    		model.addAttribute("habitaciones",habitacionService.buscarHabitaciones());
 
-    		return "Habitaciones"; //vuelve a la jsp habitaciones
+    		return "WEB-INF/vistas/Habitaciones";
     		
     	}
     		
-        return "redirect:/habitaciones"; // Redirige a la jsp habitaciones y muestra el listado si todo sale bien
+        return "redirect:/habitaciones";
+        
     }
     
 }

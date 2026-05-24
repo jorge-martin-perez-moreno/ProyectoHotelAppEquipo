@@ -168,6 +168,14 @@ public class Huesped {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public List<Reserva> getReservas() {
+	    return reservas;
+	}
+
+	public void setReservas(List<Reserva> reservas) {
+	    this.reservas = reservas;
+	}
 
 	//	Metodo toString para mostrar informacion.
 	@Override

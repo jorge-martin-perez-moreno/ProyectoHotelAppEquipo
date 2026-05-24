@@ -14,18 +14,16 @@
 
     <!-- CSS Huespedes -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/huespedes.css">
-
     <title>Hotel FundAula - Detalle Huésped</title>
 </head>
 
 <body>
-
     <!-- Cabecera -->
     <div class="page-header">
         <h3>Sistema de gestión de usuarios</h3>
         <h1>Hotel FundAula</h1>
-        <div class="divider"></div>
     </div>
+    <div class="divider"></div>
 
     <!-- Contenedor principal -->
     <div class="main-card">
@@ -38,31 +36,31 @@
         <table class="tabla-detalle">
         	<caption>Detalle del huésped</caption>
             <tr>
-                <th scope="row">Id:</th>
+                <td class="detalle-label">Id</td>
                 <td class="detalle-valor">${huesped.idHuesped}</td>
             </tr>
             <tr>
-                <th scope="row">Nombre:</th>
+                <td class="detalle-label">Nombre</td>
                 <td class="detalle-valor">${huesped.nombre}</td>
             </tr>
             <tr>
-                <th scope="row">Apellidos:</th>
+                <td class="detalle-label">Apellidos</td>
                 <td class="detalle-valor">${huesped.apellidos}</td>
             </tr>
             <tr>
-                <th scope="row">Dirección:</th>
+                <td class="detalle-label">Dirección</td>
                 <td class="detalle-valor">${huesped.direccion}</td>
             </tr>
             <tr>
-                <th scope="row">Teléfono:</th>
+                <td class="detalle-label">Teléfono</td>
                 <td class="detalle-valor">${huesped.telefono}</td>
             </tr>
             <tr>
-                <th scope="row">Email:</th>
+                <td class="detalle-label">Email</td>
                 <td class="detalle-valor">${huesped.email}</td>
             </tr>
-        </table>
 
+        </table>
         <!-- Botones de acción -->
         <div class="footer-nav">
             <c:if test="${sessionScope.rol == 'supervisor'}">
@@ -70,7 +68,6 @@
 			</c:if>
             <a href="${pageContext.request.contextPath}/huespedes" class="btn-volver">← Volver al listado</a>
         </div>
-
     </div>
 
 </body>

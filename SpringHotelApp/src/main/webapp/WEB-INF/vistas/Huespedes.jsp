@@ -48,10 +48,11 @@
                     <th scope="col">Apellidos</th>
                     <th scope="col">Dirección</th>
                     <th scope="col">Teléfono</th>
-                    <th scope="col">Email</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
+                    <th scope="col">Detalle</th>
+                    <c:if test="${rol == 'RECEPCIONISTA'}">
+                        <th scope="col">Editar</th>
+                        <th scope="col">Eliminar</th>
+                    </c:if>
                 </tr>
             </thead>
             <tbody>
@@ -63,9 +64,8 @@
                     <td>${huesped.apellidos}</td>
                     <td>${huesped.direccion}</td>
                     <td>${huesped.telefono}</td>
-                    <td>${huesped.email}</td>
                     <%-- Enlace Detalle --%>
-                    <td><a href="${pageContext.request.contextPath}/huespedes/detalle?id=${huesped.idHuesped}" class="btn-detalle">Detalle</a></td>
+                    <td><a href="${pageContext.request.contextPath}/huespedes/detalle?id=${huesped.idHuesped}" class="btn-detalle">Ver</a></td>
                     <c:if test="${rol == 'RECEPCIONISTA'}">
                     	<%-- Enlace Editar --%>
     					<td><a href="${pageContext.request.contextPath}/huespedes/editar?id=${huesped.idHuesped}" class="btn-editar">Editar</a></td>
@@ -79,7 +79,7 @@
 
         <!-- Volver al menú -->
         <div class="footer-nav">
-            <a href="${pageContext.request.contextPath}/usuarios/bienvenida" class="btn-volver">← Volver al menú</a>
+            <a href="${pageContext.request.contextPath}/usuarios/principal" class="btn-volver">← Volver al menú</a>
         </div>
 
     </div>
