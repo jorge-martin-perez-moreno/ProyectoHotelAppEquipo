@@ -860,12 +860,21 @@ Puedo explicar qué hace cada fragmento marcado como IA, justificar por qué enc
 ## 🤖 Uso de inteligencia artificial Alumno B
 ### Herramientas utilizadas
 **Alumno B — Jorge Martín Pérez-Nieto
-- 
+- ChatGPT (versión: 5.5)
 
 Usos:
 
-- 
-
+- Confirmar validez de las clases de configuración rápidamente.
+- Resolver la falta de una dependencia del POM.
+- Confirmar resto de dependencias del POM.
+- Buscar fallos de sintáxis
+- Pedir explicaciones de funcionamientos
+- Pedir explicaciones de buenas prácticas
+- Pedir explicaciones de apuntes y temarios que no entendía
+- Preguntas sobre HTML básico que no me acordaba
+- Pedir explicación sobre errores de consola
+- Pedir explicación y consejo sobre resolución de conflictos merge repetidos
+- Implementar estilos en vistas y arreglos css varios
 
 ---
 
@@ -880,29 +889,28 @@ Usos:
 
 <tr>
 <td>POM</td>
-<td>Sí/NO</td>
-<td>...</br>
-...
+<td>Sí</td>
+<td>En Eclipse me dió un error en el POM, porque Javi tiene otra version de Eclipse, faltaba la dependencia de plugging de Maven</br>
 </td>
 </tr>
 
 <tr>
 <td>Configuración de Spring (XML / Java Config)</td>
-<td>Sí/NO</td>
-<td>...</td>
+<td>Sí</td>
+<td>Hemos copiado estas clases de configuración de un proyecto para meterlas en el nuestro que es un proyecto Maven con configuración por clases e Hibernate. Que nos revise las clases configuracion y estudiar que hace cada clase y cada metodo para entender bien el flujo de la aplicación</td>
 </tr>
 
 <tr>
 <td>Excepciones personalizadas</td>
-<td>Sí/NO</td>
-<td>...</td>
+<td>NO</td>
+<td></td>
 <td></td>
 </tr>
 
 <tr>
 <td>Entidad / DAO / Controller / vistas de Habitaciones</td>
-<td>Sí/NO</td>
-<td>...</td>
+<td>NO</td>
+<td></td>
 </tr>
 
 <tr>
@@ -913,48 +921,58 @@ Usos:
 
 <tr>
 <td>Entidad Reserva + DAO de Reservas (común)</td>
-<td>Sí/NO</td>
-<td>...</td>
+<td>NO</td>
+<td></td>
 </tr>
 
 <tr>
 <td>Reservas — listado / detalle / eliminación + JSPs</td>
 
-<td>Sí/NO</td>
-<td>...</td>
+<td>NO</td>
+<td></td>
 </tr>
 
 <tr>
 <td>Entidad Usuario / DAO Usuario / LoginController</td>
-<td>Sí/NO</td>
-<td>...</td>
+<td>NO</td>
+<td></td>
 </tr>
 
 <tr>
 <td>Entidad / DAO / Controller / vistas de Huéspedes</td>
-<td>Sí/NO</td>
-<td>...</td>
+<td>NO</td>
+<td></td>
 </tr>
 
 <tr>
 <td>Reservas — alta / modificación + FormularioReserva.jsp</td>
-<td>Sí/NO</td>
-<td>...</td>
+<td>NO</td>
+<td></td>
 </tr>
 
 <tr>
 <td>Documentación (Readme)</td>
-<td>Sí/NO</td>
-<td>...</br>
-...</br>
+<td>Sí</td>
+<td>Dime cómo se ponen los títulos en grande en el readme</br>
+Dime cómo se pone color morado de fondo en el título principal del readme y ponle un dibujito</br>
+Dame el código para meter una imagen en un div en el readme para que quede responsive</br>
+El profe me ha dado esta tabla para meter en el readme pero se ve muy mal en el preview, dámela en h
+tml</br>
+He hecho una lista del Mapeo ORM y al pegarlo en el README de mi proyecto se pierde el formato, dime cómo mantengo el formato exacto del texto y me dijo que así, poniendo esto al principio: "```text" y esto al final: "```"
+<br>
+Dame un icono para pegar en cada título que corresponda con los nombres de los apartados</br>
+Dime como meter una línea al final de cada apartado del readme</br>
+Dime una descripción buena para poner en este readme</br>
+Estos son los css que ha puesto mi compañero en las vistas del proyecto, dime en qué parte tengo que pegarlos y si tengo que cambiar algo más para que queden con su estilo, los puedo pegar en cualquier parte?
+<br>
 </td>
 </tr>
 </table>
 
 <tr>
 <td>Documentación (Javadoc)</td>
-<td>Sí/NO</td>
-<td>...</td>
+<td>NO</td>
+<td></td>
 </tr>
 </table>
 
