@@ -75,7 +75,8 @@ public class HuespedDao implements IHuespedDao{
 		session.update(huesped);
 	
 	}
-
+	
+	@Transactional
 	@Override
 	public void eliminarHuesped(int id) {
 		
